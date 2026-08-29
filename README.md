@@ -71,3 +71,18 @@ cd web && npm install && npm run dev    # http://localhost:3200
 Cockpit (cifra que manda + KPI + acciones + aging), Cartera, Mi día (semáforos) y Calidad de
 datos, server-rendered desde las vistas `metrics.v0_*`. Identidad según
 `design/cota-manual-de-marca.html` (manual Cota 2.0) y wireframe `design/cota-plataforma-wireframe.html`.
+
+## Despliegue (F1)
+
+El front está listo para Vercel (único paso que requiere cuenta):
+
+1. En [vercel.com](https://vercel.com) → **Add New → Project** → importar `dyoma-web/pmh-platform`
+   (login con GitHub). **Root Directory: `web`**. Framework: Next.js (autodetectado).
+2. Variables de entorno del proyecto: `DATABASE_URL` (pooler de Supabase),
+   `BASIC_AUTH_USER` y `BASIC_AUTH_PASS` (protección interina hasta el OIDC de F2).
+3. Deploy. Cada push a `main` redespliega automáticamente.
+
+**Digest diario:** `python tools/digest.py [--quien "Nombre"]` genera el correo de las 7:00 con la
+voz narrativa (HTML en `out/`). Para automatizarlo, poner los secretos `DATABASE_URL`, `SMTP_*` y
+`DIGEST_TO` en GitHub → Actions y el workflow `digest-diario` lo envía de lunes a viernes.
+Con Google Workspace: `smtp.gmail.com:587` + contraseña de aplicación.

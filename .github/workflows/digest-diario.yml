@@ -1,0 +1,36 @@
+# Digest diario de Cota — 07:00 Bogotá (12:00 UTC).
+# Se activa solo cuando existen los secretos DATABASE_URL y SMTP_* en el repo
+# (Settings → Secrets and variables → Actions). Sin ellos, termina sin enviar.
+name: digest-diario
+on:
+  schedule:
+    - cron: "0 12 * * 1-5" # lunes a viernes
+  workflow_dispatch: {}
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      DIGEST_TO: ${{ secrets.DIGEST_TO }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verificar configuración
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "Sin DATABASE_URL en secretos: el digest queda inactivo."; exit 0
+          fi
+          echo "activo=si" >> "$GITHUB_ENV"
+      - name: Instalar dependencias
+        if: env.activo == 'si'
+        run: pip install psycopg2-binary
+      - name: Generar y enviar digest
+        if: env.activo == 'si'
+        run: python tools/digest.py
