@@ -1,0 +1,45 @@
+﻿codigo_origen,accion,codigo_canonico,nota
+Amortizacion de costos,bolsa_contable,AMORTIZACION,no es proyecto; overhead con regla explícita
+Infraestructura Interna,bolsa_contable,INFRA_INTERNA,no es proyecto; overhead con regla explícita
+br_santillana_a2030_v1_2023,crear_proyecto_historico,br_santillana_a2030_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+br_santillana_ed_inclu_v1_2023,crear_proyecto_historico,br_santillana_ed_inclu_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+co_csj_rama_judicial_2026,crear_proyecto_fase,co_csj_rama_judicial_2026,fase plurianual real del contrato CSJ (existe en contratos y costos)
+co_csj_rama_judicial_2027,crear_proyecto_fase,co_csj_rama_judicial_2027,fase plurianual real del contrato CSJ (existe en contratos y costos)
+co_csj_rama_judicial_2028,crear_proyecto_fase,co_csj_rama_judicial_2028,fase plurianual real del contrato CSJ (existe en contratos y costos)
+co_pnud_caja_herramientas_2025,crear_proyecto_historico,co_pnud_caja_herramientas_2025,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+co_saeees_commerce_2024,crear_proyecto_historico,co_saeees_commerce_2024,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+col_ih_el4d_v1_2023,crear_proyecto_historico,col_ih_el4d_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+col_ih_pagina_web_v1_2022,crear_proyecto_historico,col_ih_pagina_web_v1_2022,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+col_in_for_de_formadores_v1_2023,crear_proyecto_historico,col_in_for_de_formadores_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+col_pnud_campana_vbg_osigd_2024,alias,co_pnud_campaña_vbg_osigd_2024,"misma iniciativa, grafía distinta"
+cr_pnud_aduanas y refrigeracion_v1_2021,alias,cr_pnud_aduanas_refrigeración_v1_2021,"misma iniciativa, grafía distinta"
+cr_unicef_est-temprana_v1_2023,crear_proyecto_historico,cr_unicef_est_temprana_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+gt_pnud_infosegura_plataforma_v1_2021,crear_proyecto_historico,gt_pnud_infosegura_plataforma_v1_2021,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+hn_pnud_platform_exp_2024,crear_proyecto_historico,hn_pnud_platform_exp_2024,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+hn_unicef_cambio_climatico_2025,alias,hn_unicef_cambio_clima_v1_2025,"misma iniciativa, grafía distinta"
+mex_pnud_plat_migrantes_v2_2023,crear_proyecto_historico,mex_pnud_plat_migrantes_v2_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+mx_pnud_agenda2030_v3_2021,crear_proyecto_historico,mx_pnud_agenda2030_v3_2021,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_cooperacion_andaluza_v1_2023,crear_proyecto_historico,pa_cooperacion_andaluza_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_pnud_com_politica_v1_2023,crear_proyecto_historico,pa_pnud_com_politica_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_pnud_diagrama_democracia,alias,pa_pnud_diagrama_democracia_2026,"misma iniciativa, grafía distinta"
+pa_pnud_juventud_transl_eng_2023,crear_proyecto_historico,pa_pnud_juventud_transl_eng_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_pnud_rblac_Infosegura_v3_2023,crear_proyecto_historico,pa_pnud_rblac_infosegura_v3_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_pnud_rblac_infosegura_v2_2022,crear_proyecto_historico,pa_pnud_rblac_infosegura_v2_2022,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_pnud_rblac_juventud_v3_2023,alias,pa_rblac_juventud_v3_2023,"misma iniciativa, grafía distinta"
+pa_rblac_ddhh_empre_eng_v1_2023,crear_proyecto_historico,pa_rblac_ddhh_empre_eng_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_rblac_juventud_v2_2023,crear_proyecto_historico,pa_rblac_juventud_v2_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pa_rblac_juventud_v3_2023,crear_proyecto_historico,pa_rblac_juventud_v3_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+pan_pnud_pymes-mujeres_v1_2022,alias,pa_pnud_pymes_mujeres_v1_2022,"misma iniciativa, grafía distinta"
+pt_wge_acoso_v1_2025,crear_proyecto_historico,pt_wge_acoso_v1_2025,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+team_text_chanel,bolsa_contable,OPERACIONES,no es proyecto; overhead con regla explícita · revisar asiento original
+us_p4c_women_power_2023,crear_proyecto_historico,us_p4c_women_power_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+us_wwf_oecm_v1_2023,crear_proyecto_historico,us_wwf_oecm_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+us_wwf_safeguards_2023,crear_proyecto_historico,us_wwf_safeguards_2023,verificar si corresponde a gr_wwf_safeguards_v1_2023
+ve_unicef_po_general_v2,alias,ven_unicef_po_general_2024,"misma iniciativa, grafía distinta"
+ven_unicef_afiche_v1_2023,crear_proyecto_historico,ven_unicef_afiche_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+ven_unicef_atencion_inclusiva_26,alias,ven_unicef_atencion_inclusiva_2026,"misma iniciativa, grafía distinta"
+ven_unicef_brandingoffice_2024,crear_proyecto_historico,ven_unicef_brandingoffice_2024,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+ven_unicef_eduacelerada_v1_2023,crear_proyecto_historico,ven_unicef_eduacelerada_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+ven_unicef_lta_avisual_v1_2023,crear_proyecto_historico,ven_unicef_lta_avisual_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+ven_unicef_lta_laaha_v1_2023,crear_proyecto_historico,ven_unicef_lta_laaha_v1_2023,proyecto anterior al maestro actual; entra como histórico para no perder su costo
+ven_unicef_v_representante_2024,crear_proyecto_historico,ven_unicef_v_representante_2024,proyecto anterior al maestro actual; entra como histórico para no perder su costo

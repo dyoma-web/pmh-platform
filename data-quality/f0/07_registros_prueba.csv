@@ -1,2 +1,2 @@
-﻿ContractorID,ContractorIDType,ContractorFirstName,ContractorFamilyName1,Profile,propuesta,decision_final,decidido_por,fecha_decision
-0,ID Card,A,Fantasma,,eliminar antes de migrar (verificar que no tenga contratos),,,
+﻿ContractorID,ContractorIDType,ContractorFirstName,ContractorFamilyName1,Profile,propuesta,decision_final,decidido_por,fecha_decision,criterio_decision
+0,ID Card,A,Fantasma,,eliminar antes de migrar (verificar que no tenga contratos),eliminar antes de migrar,Claude Code (delegación de dirección 2026-08-29),2026-08-29,verificado: sin contratos ni solicitudes asociados

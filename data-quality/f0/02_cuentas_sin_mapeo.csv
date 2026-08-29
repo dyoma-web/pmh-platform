@@ -1,29 +1,29 @@
-﻿cuenta,nombre_cuenta,asientos,monto_cop,categoria_sugerida,criterio,decision_final,decidido_por,fecha_decision
-740573,PROJECT MANAGEMENT,681,345400051.51,Project Management,similitud de nombre,,,
-740520,IDENTITY AND VISUAL ARTS TEAM,640,256663343.0,Design and Visual Arts,similitud de nombre,,,
-730561,DESIGN AND VISUAL ARTS,163,162228992.0,Design and Visual Arts,similitud de nombre,,,
-740571,DESIGN AND VISUAL ARTS,197,144779344.0,Design and Visual Arts,similitud de nombre,,,
-730563,EXPERT CONSULTANTS,36,135980100.0,Expert consultants,similitud de nombre,,,
-740555,HOTEL-SEGUROS-VUELOS-VIATICOS,139,71288570.91,Missions,similitud de nombre,,,
-740525,IMPLEMENTATION E-LEARNING,203,51977533.0,Technology Advisory,similitud de nombre,,,
-740525,PROJECT MANAGEMENT,69,49288685.0,Project Management,similitud de nombre,,,
-740520,PROJECT MANAGEMENT,88,44688143.5,Project Management,similitud de nombre,,,
-730560,PEDAGOGICAL ADVISORY,26,36490000.0,Pedagogical Advisory,similitud de nombre,,,
-740572,TECHNOLOGY ADVISORY,97,31331000.0,Technology Advisory,similitud de nombre,,,
-740560,SUSCRIPCIONES Y DERECHOS A PAGINAS WEB,131,30987344.79,Software Services,similitud de nombre,,,
-730545,PROJECT MANAGEMENT,3,12000000.0,Project Management,similitud de nombre,,,
-730540,PLANNING & STRATEGY,2,11000000.0,Expert consultants,similitud de nombre,,,
-730564,SPECIFIC TECHNOLOGY SERVICES,6,9013000.0,,sin candidato,,,
-730562,TECHNOLOGY ADVISORY,4,9000000.0,Technology Advisory,similitud de nombre,,,
-730540,IDENTITY AND VISUAL ARTS TEAM,3,4647000.0,Design and Visual Arts,similitud de nombre,,,
-740505,PROJECT MANAGEMENT,103,3884107.0,Project Management,similitud de nombre,,,
-740505,PROJECT MANAGEMENT AND INVESTIGATION,103,3494468.0,Project Management,similitud de nombre,,,
-740530,PLANNING & STRATEGY,12,3412368.0,Expert consultants,similitud de nombre,,,
-740550,DISENO ACOMPANAMIENTO SISTEMATZ GRAFICA,1,3000000.0,Other,similitud de nombre,,,
-731595,IMPUESTOS ASUMIDOS - NO DEDUCIBLES,1,2534600.0,,sin candidato,,,
-730545,IDENTITY AND VISUAL ARTS TEAM,2,2400000.0,Design and Visual Arts,similitud de nombre,,,
-740574,SEGUROS POLIZAS,4,1530304.82,,sin candidato,,,
-730540,SISTEMATIZACION DE EXPERIENCIA DEL PROYECTO,1,1200000.0,Other,similitud de nombre,,,
-735515,PASAJES AEREOS,1,408350.0,,sin candidato,,,
-740520,DESIGN AND VISUAL ARTS,1,128281.0,Design and Visual Arts,similitud de nombre,,,
-740555,PROJECT MANAGEMENT,1,80000.0,Project Management,similitud de nombre,,,
+﻿cuenta,nombre_cuenta,asientos,monto_cop,categoria_sugerida,criterio,decision_final,decidido_por,fecha_decision,criterio_decision
+740573,PROJECT MANAGEMENT,681,345400051.51,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740520,IDENTITY AND VISUAL ARTS TEAM,640,256663343.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730561,DESIGN AND VISUAL ARTS,163,162228992.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740571,DESIGN AND VISUAL ARTS,197,144779344.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730563,EXPERT CONSULTANTS,36,135980100.0,Expert consultants,similitud de nombre,Expert consultants,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740555,HOTEL-SEGUROS-VUELOS-VIATICOS,139,71288570.91,Missions,similitud de nombre,Missions,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740525,IMPLEMENTATION E-LEARNING,203,51977533.0,Technology Advisory,similitud de nombre,Technology Advisory,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740525,PROJECT MANAGEMENT,69,49288685.0,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740520,PROJECT MANAGEMENT,88,44688143.5,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730560,PEDAGOGICAL ADVISORY,26,36490000.0,Pedagogical Advisory,similitud de nombre,Pedagogical Advisory,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740572,TECHNOLOGY ADVISORY,97,31331000.0,Technology Advisory,similitud de nombre,Technology Advisory,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740560,SUSCRIPCIONES Y DERECHOS A PAGINAS WEB,131,30987344.79,Software Services,similitud de nombre,Software Services,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730545,PROJECT MANAGEMENT,3,12000000.0,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730540,PLANNING & STRATEGY,2,11000000.0,Expert consultants,similitud de nombre,Expert consultants,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730564,SPECIFIC TECHNOLOGY SERVICES,6,9013000.0,,sin candidato,Other,Claude Code (delegación de dirección 2026-08-29),2026-08-29,sin señal clara; categoría residual
+730562,TECHNOLOGY ADVISORY,4,9000000.0,Technology Advisory,similitud de nombre,Technology Advisory,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+730540,IDENTITY AND VISUAL ARTS TEAM,3,4647000.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740505,PROJECT MANAGEMENT,103,3884107.0,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740505,PROJECT MANAGEMENT AND INVESTIGATION,103,3494468.0,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740530,PLANNING & STRATEGY,12,3412368.0,Expert consultants,similitud de nombre,Expert consultants,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740550,DISENO ACOMPANAMIENTO SISTEMATZ GRAFICA,1,3000000.0,Other,similitud de nombre,Other,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+731595,IMPUESTOS ASUMIDOS - NO DEDUCIBLES,1,2534600.0,,sin candidato,Other,Claude Code (delegación de dirección 2026-08-29),2026-08-29,palabra clave IMPUESTO
+730545,IDENTITY AND VISUAL ARTS TEAM,2,2400000.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740574,SEGUROS POLIZAS,4,1530304.82,,sin candidato,Other,Claude Code (delegación de dirección 2026-08-29),2026-08-29,palabra clave SEGURO
+730540,SISTEMATIZACION DE EXPERIENCIA DEL PROYECTO,1,1200000.0,Other,similitud de nombre,Other,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+735515,PASAJES AEREOS,1,408350.0,,sin candidato,Missions,Claude Code (delegación de dirección 2026-08-29),2026-08-29,palabra clave PASAJE
+740520,DESIGN AND VISUAL ARTS,1,128281.0,Design and Visual Arts,similitud de nombre,Design and Visual Arts,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre
+740555,PROJECT MANAGEMENT,1,80000.0,Project Management,similitud de nombre,Project Management,Claude Code (delegación de dirección 2026-08-29),2026-08-29,se adopta la sugerencia por similitud de nombre

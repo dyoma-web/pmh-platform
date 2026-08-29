@@ -1,109 +1,109 @@
-﻿Id,ProjectCode,Code,Date,Cost,details_actual,Invoice,moneda_sugerida,criterio,decision_final,decidido_por,fecha_decision
-9c760d95,pa_pnud_pymes_mujeres_v1_2022,TIN-DOM-MNT-MNT,2024-01-02,373856.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-24ac6348,hon_pnud,TIN-DOM-MNT-MNT,2024-01-14,86849.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-a8c7aa68,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-01-14,4185598.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-9c1d96c4,gq_pnud_funcion_publica_v1_2022,TIN-DOM-MNT-MNT,2024-01-31,82810.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-a20aaf01,hon_pnud_red_pública_v1_2022,TIN-DOM-MNT-MNT,2024-02-03,249609.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-75483742,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-02-28,634.0,,,USD,monto < 1.000 (patrón USD),,,
-b20f7739,hon_pnud,TIN-SRV-MNT-MNT,2024-02-29,226447.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-da6ef8e9,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-02-29,293771.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-b63f818e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-02-29,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-c2c269e8,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-02-29,115507.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-2bc97b9c,hon_pnud,TIN-SRV-MNT-MNT,2024-03-31,239160.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-e8e8d7da,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-03-31,308840.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-4edc46ed,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-03-31,50.0,,,USD,monto < 1.000 (patrón USD),,,
-9a579c3e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-03-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-07f998bb,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-03-31,163522.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-5cb5cab2,hon_pnud,TIN-SRV-MNT-MNT,2024-04-30,447680.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-ed81c720,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-04-30,247600.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-37cb9425,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-04-30,150.0,,,USD,monto < 1.000 (patrón USD),,,
-691a32fe,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-04-30,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-691eed0e,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-04-30,284420.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-512fbdbd,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-05-14,246656.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-763c3448,hon_pnud,TIN-SRV-MNT-MNT,2024-05-31,461537.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-fdc758e5,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-05-31,150.0,,,USD,monto < 1.000 (patrón USD),,,
-b86c9795,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-05-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-bc5e4e29,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-05-31,294400.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-de9d985c,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-06-06,485298.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-e86114f7,hon_pnud,TIN-SRV-MNT-MNT,2024-06-30,437869.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-512fc602,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-06-30,254947.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-3dd9b3ff,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-06-30,150.0,,,USD,monto < 1.000 (patrón USD),,,
-47f3ebdc,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-06-30,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-83dfd6d9,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-06-30,306000.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-f12d2175,pa_rblac_moodle_servidores_v1_2023,TIN-DOM-MNT-MNT,2024-06-30,90000.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-774ebed8,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-06-30,235124.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-35a2e1d8,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-07-06,480816.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-606dd29a,cr_pnud_aduanas_refrigeración_v1_2021,TIN-DOM-MNT-MNT,2024-07-27,93155.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-0e48008b,gq_pnud_funcion_publica_v1_2022,TIN-DOM-MNT-MNT,2024-07-31,89103.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-cc179eb6,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,133308.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-863ea747,hon_pnud,TIN-SRV-MNT-MNT,2024-07-31,427056.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-37bfdd56,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,253638.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-d956ba29,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-07-31,150.0,,,USD,monto < 1.000 (patrón USD),,,
-5fae9f14,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-07-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-4acfb745,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,383334.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-c80ded65,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-07-31,232680.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-d66d7648,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-08-06,480942.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-b5872adb,us_wwf_oecm_v2_2024,TIN-DOM-MNT-MNT,2024-08-18,93885.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-958c1b20,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-08-18,410802.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-8b30f864,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,229110.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-a20bb521,hon_pnud,TIN-SRV-MNT-MNT,2024-08-31,267246.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-ec6a9c91,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,253176.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-61b4c742,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-08-31,150.0,,,USD,monto < 1.000 (patrón USD),,,
-9c80633e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-08-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-92506d41,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,410802.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-b71a943c,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-08-31,148554.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-325dbb00,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-09-06,387000.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-d129f76b,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-09-18,252618.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-f0dd32fe,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,247815.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-c8167eac,hon_pnud,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-d42c28cc,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,266580.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-224f72a7,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-09-30,150.0,,,USD,monto < 1.000 (patrón USD),,,
-10fc3a4d,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-79c06e6a,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-fa2ad98f,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-10-06,385896.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-b0786b9c,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-10-18,196102.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-44dc4255,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,255310.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-924b147a,hon_pnud,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-0ba71214,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,266283.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-3dc53218,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-10-31,150.0,,,USD,monto < 1.000 (patrón USD),,,
-3dba06aa,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-10-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-fe3189d3,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-0eb1f320,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-26faa873,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-11-06,384566.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-a45a2f6b,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-11-18,185254.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-735ccf32,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,252375.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-c5fd0b68,hon_pnud,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-84d4b002,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,264514.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-ce223034,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-f885a543,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-3537d983,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-12-06,391635.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-70e5d717,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-12-18,177502.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-26607de2,gq_pnud_form_ministros_v1_2025,TIN-SRV-MNT-MNT,2024-12-31,123480.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-4aa3a215,hon_pnud,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-8dfd0424,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-12-31,271260.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-f142c37d,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-0fd62e88,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-b4a29ea9,hon_pnud_red_pública_v1_2022,TIN-DOM-MNT-MNT,2025-02-03,271975.0,,,COP,monto ≥ 10.000 (patrón COP),,,
-072b86c1,hon_pnud,TIN-DOM-MNT-MNT,2025-02-14,90799.0,,inf_data_costs_Files_/072b86c1.Invoice.220942.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-50ecae26,arg_pnud_a2030_v1_2023,TIN-DOM-MNT-MNT,2025-03-03,44239.0,,inf_data_costs_Files_/50ecae26.Invoice.221136.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-4f3568a6,cl_unwomen_indigform_2025,TIN-WSO-CTM-EML,2025-03-16,83988.0,,inf_data_costs_Files_/4f3568a6.Invoice.221735.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-72b841b2,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-06-17,23.0,AI ChatBot for Automated Live Chat Support,,USD,monto < 1.000 (patrón USD),,,
-cf956e57,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-06-17,59.0,wp Go Maps v9 LTD 1 Site License,,USD,monto < 1.000 (patrón USD),,,
-99bb569c,pa_rblac_moodle_servidores_v1_2023,TIN-DOM-MNT-MNT,2025-06-30,90746.0,,inf_data_costs_Files_/99bb569c.Invoice.012709.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-e39f593d,gq_pnud_form_ministros_v1_2025,TIN-DOM-MNT-MNT,2025-07-16,85843.0,,inf_data_costs_Files_/e39f593d.Invoice.013931.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-a8dd6269,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-07-28,390.0,,GAP_DATA_05_PAYMENTS_Files_/a8dd6269.Invoice.183804.pdf,USD,monto < 1.000 (patrón USD),,,
-65fc593b,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-07-28,39.0,Pendiente validar fecha,,USD,monto < 1.000 (patrón USD),,,
-2a913a5e,fji_pnud_pacwip_platform_2025,TIN-WSO-CTM-PLG,2025-07-29,99.0,Pagado con Mastercard 0915,GAP_DATA_05_PAYMENTS_Files_/2a913a5e.Invoice.184141.pdf,USD,monto < 1.000 (patrón USD),,,
-9cf0cda1,cr_pnud_aduanas_ref_server_2025,TIN-DOM-MNT-MNT,2025-08-04,90843.0,Dominio 1 año,inf_data_costs_Files_/9cf0cda1.Invoice.155632.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-7bd42bb8,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-08-04,34.49,Tarjeta Davivienda,,USD,monto < 1.000 (patrón USD),,,
-3d2f0350,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-08-19,49.0,Tarjeta Banco Caja Social,GAP_DATA_05_PAYMENTS_Files_/3d2f0350.Invoice.181140.pdf,USD,monto < 1.000 (patrón USD),,,
-af99a1e4,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-09-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/af99a1e4.Invoice.180839.pdf,USD,monto < 1.000 (patrón USD),,,
-21114b69,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-09-15,49.0,,,USD,monto < 1.000 (patrón USD),,,
-cb4f7a32,fji_pnud_pacwip_platform_2025,TIN-DOM-MNT-MNT,2025-09-15,139320.0,,GAP_DATA_05_PAYMENTS_Files_/cb4f7a32.Invoice.185545.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-a0c9d08a,fji_pnud_pacwip_platform_2025,TIN-WSO-CTM-PLG,2025-09-15,297.0,,,USD,monto < 1.000 (patrón USD),,,
-d2fc1f5d,fji_pnud_tce_2025,TIN-WSO-CTM-PLG,2025-09-15,249.0,Tarjeta Banco Caja Social,,USD,monto < 1.000 (patrón USD),,,
-f5593a1b,gq_pnud_form_ministros_v1_2025,TIN-DOM-MNT-MNT,2025-09-15,259998.0,,GAP_DATA_05_PAYMENTS_Files_/f5593a1b.Invoice.184436.pdf,COP,monto ≥ 10.000 (patrón COP),,,
-b5cfb30e,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-10-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/b5cfb30e.Invoice.181056.pdf,USD,monto < 1.000 (patrón USD),,,
-9e8aacea,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-11-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/9e8aacea.Invoice.181212.pdf,USD,monto < 1.000 (patrón USD),,,
-92d239fe,gq_pnud_form_ministros_v1_2025,TIN-SRV-MNT-MNT,2026-01-30,15.09,SAS,GAP_DATA_05_PAYMENTS_Images/92d239fe.Invoice.030310.png,USD,monto < 1.000 (patrón USD),,,
-140807f4,cr_unicef_lidera_clima_2026,ARI-VAI-VAI,2026-06-10,5.0,SAS,GAP_DATA_05_PAYMENTS_Files_/140807f4.Invoice.233510.pdf,USD,monto < 1.000 (patrón USD),,,
+﻿Id,ProjectCode,Code,Date,Cost,details_actual,Invoice,moneda_sugerida,criterio,decision_final,decidido_por,fecha_decision,criterio_decision
+9c760d95,pa_pnud_pymes_mujeres_v1_2022,TIN-DOM-MNT-MNT,2024-01-02,373856.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+24ac6348,hon_pnud,TIN-DOM-MNT-MNT,2024-01-14,86849.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a8c7aa68,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-01-14,4185598.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+9c1d96c4,gq_pnud_funcion_publica_v1_2022,TIN-DOM-MNT-MNT,2024-01-31,82810.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a20aaf01,hon_pnud_red_pública_v1_2022,TIN-DOM-MNT-MNT,2024-02-03,249609.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+75483742,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-02-28,634.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+b20f7739,hon_pnud,TIN-SRV-MNT-MNT,2024-02-29,226447.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+da6ef8e9,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-02-29,293771.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b63f818e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-02-29,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+c2c269e8,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-02-29,115507.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+2bc97b9c,hon_pnud,TIN-SRV-MNT-MNT,2024-03-31,239160.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+e8e8d7da,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-03-31,308840.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+4edc46ed,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-03-31,50.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+9a579c3e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-03-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+07f998bb,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-03-31,163522.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+5cb5cab2,hon_pnud,TIN-SRV-MNT-MNT,2024-04-30,447680.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+ed81c720,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-04-30,247600.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+37cb9425,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-04-30,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+691a32fe,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-04-30,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+691eed0e,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-04-30,284420.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+512fbdbd,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-05-14,246656.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+763c3448,hon_pnud,TIN-SRV-MNT-MNT,2024-05-31,461537.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+fdc758e5,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-05-31,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+b86c9795,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-05-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+bc5e4e29,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-05-31,294400.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+de9d985c,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-06-06,485298.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+e86114f7,hon_pnud,TIN-SRV-MNT-MNT,2024-06-30,437869.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+512fc602,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-06-30,254947.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+3dd9b3ff,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-06-30,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+47f3ebdc,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-06-30,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+83dfd6d9,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-06-30,306000.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+f12d2175,pa_rblac_moodle_servidores_v1_2023,TIN-DOM-MNT-MNT,2024-06-30,90000.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+774ebed8,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-06-30,235124.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+35a2e1d8,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-07-06,480816.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+606dd29a,cr_pnud_aduanas_refrigeración_v1_2021,TIN-DOM-MNT-MNT,2024-07-27,93155.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+0e48008b,gq_pnud_funcion_publica_v1_2022,TIN-DOM-MNT-MNT,2024-07-31,89103.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+cc179eb6,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,133308.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+863ea747,hon_pnud,TIN-SRV-MNT-MNT,2024-07-31,427056.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+37bfdd56,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,253638.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+d956ba29,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-07-31,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+5fae9f14,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-07-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+4acfb745,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-07-31,383334.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+c80ded65,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-07-31,232680.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+d66d7648,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-08-06,480942.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b5872adb,us_wwf_oecm_v2_2024,TIN-DOM-MNT-MNT,2024-08-18,93885.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+958c1b20,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-08-18,410802.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+8b30f864,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,229110.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a20bb521,hon_pnud,TIN-SRV-MNT-MNT,2024-08-31,267246.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+ec6a9c91,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,253176.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+61b4c742,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-08-31,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+9c80633e,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-08-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+92506d41,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-08-31,410802.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b71a943c,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-08-31,148554.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+325dbb00,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-09-06,387000.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+d129f76b,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-09-18,252618.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+f0dd32fe,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,247815.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+c8167eac,hon_pnud,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+d42c28cc,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,266580.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+224f72a7,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-09-30,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+10fc3a4d,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+79c06e6a,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-09-30,252618.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+fa2ad98f,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-10-06,385896.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b0786b9c,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-10-18,196102.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+44dc4255,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,255310.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+924b147a,hon_pnud,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+0ba71214,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,266283.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+3dc53218,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-CHB,2024-10-31,150.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+3dba06aa,hon_pnud_red_pública_v1_2022,TIN-WSO-CTM-EML,2024-10-31,43797.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+fe3189d3,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+0eb1f320,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-10-31,196102.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+26faa873,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-11-06,384566.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a45a2f6b,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-11-18,185254.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+735ccf32,gq_pnud_funcion_publica_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,252375.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+c5fd0b68,hon_pnud,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+84d4b002,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,264514.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+ce223034,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+f885a543,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-11-30,185254.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+3537d983,cr_pnud_aduanas_refrigeración_v1_2021,TIN-SRV-MNT-MNT,2024-12-06,391635.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+70e5d717,us_wwf_oecm_v2_2024,TIN-SRV-MNT-MNT,2024-12-18,177502.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+26607de2,gq_pnud_form_ministros_v1_2025,TIN-SRV-MNT-MNT,2024-12-31,123480.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+4aa3a215,hon_pnud,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+8dfd0424,hon_pnud_red_pública_v1_2022,TIN-SRV-MNT-MNT,2024-12-31,271260.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+f142c37d,pa_pnud_pymes_mujeres_v1_2022,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+0fd62e88,pa_rblac_moodle_servidores_v1_2023,TIN-SRV-MNT-MNT,2024-12-31,177502.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b4a29ea9,hon_pnud_red_pública_v1_2022,TIN-DOM-MNT-MNT,2025-02-03,271975.0,,,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+072b86c1,hon_pnud,TIN-DOM-MNT-MNT,2025-02-14,90799.0,,inf_data_costs_Files_/072b86c1.Invoice.220942.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+50ecae26,arg_pnud_a2030_v1_2023,TIN-DOM-MNT-MNT,2025-03-03,44239.0,,inf_data_costs_Files_/50ecae26.Invoice.221136.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+4f3568a6,cl_unwomen_indigform_2025,TIN-WSO-CTM-EML,2025-03-16,83988.0,,inf_data_costs_Files_/4f3568a6.Invoice.221735.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+72b841b2,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-06-17,23.0,AI ChatBot for Automated Live Chat Support,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+cf956e57,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-06-17,59.0,wp Go Maps v9 LTD 1 Site License,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+99bb569c,pa_rblac_moodle_servidores_v1_2023,TIN-DOM-MNT-MNT,2025-06-30,90746.0,,inf_data_costs_Files_/99bb569c.Invoice.012709.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+e39f593d,gq_pnud_form_ministros_v1_2025,TIN-DOM-MNT-MNT,2025-07-16,85843.0,,inf_data_costs_Files_/e39f593d.Invoice.013931.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a8dd6269,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-07-28,390.0,,GAP_DATA_05_PAYMENTS_Files_/a8dd6269.Invoice.183804.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+65fc593b,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-07-28,39.0,Pendiente validar fecha,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+2a913a5e,fji_pnud_pacwip_platform_2025,TIN-WSO-CTM-PLG,2025-07-29,99.0,Pagado con Mastercard 0915,GAP_DATA_05_PAYMENTS_Files_/2a913a5e.Invoice.184141.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+9cf0cda1,cr_pnud_aduanas_ref_server_2025,TIN-DOM-MNT-MNT,2025-08-04,90843.0,Dominio 1 año,inf_data_costs_Files_/9cf0cda1.Invoice.155632.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+7bd42bb8,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-08-04,34.49,Tarjeta Davivienda,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+3d2f0350,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-08-19,49.0,Tarjeta Banco Caja Social,GAP_DATA_05_PAYMENTS_Files_/3d2f0350.Invoice.181140.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+af99a1e4,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-09-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/af99a1e4.Invoice.180839.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+21114b69,fji_pnud_feo_platform_2025,TIN-WSO-CTM-PLG,2025-09-15,49.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+cb4f7a32,fji_pnud_pacwip_platform_2025,TIN-DOM-MNT-MNT,2025-09-15,139320.0,,GAP_DATA_05_PAYMENTS_Files_/cb4f7a32.Invoice.185545.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+a0c9d08a,fji_pnud_pacwip_platform_2025,TIN-WSO-CTM-PLG,2025-09-15,297.0,,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+d2fc1f5d,fji_pnud_tce_2025,TIN-WSO-CTM-PLG,2025-09-15,249.0,Tarjeta Banco Caja Social,,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+f5593a1b,gq_pnud_form_ministros_v1_2025,TIN-DOM-MNT-MNT,2025-09-15,259998.0,,GAP_DATA_05_PAYMENTS_Files_/f5593a1b.Invoice.184436.pdf,COP,monto ≥ 10.000 (patrón COP),COP,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto ≥ 10.000 (patrón COP)
+b5cfb30e,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-10-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/b5cfb30e.Invoice.181056.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+9e8aacea,us_wwf_elearning_nature_v1_2025,TIN-SLN-TLS-TLR,2025-11-03,34.49,Tarjeta terminada en *3733,GAP_DATA_05_PAYMENTS_Files_/9e8aacea.Invoice.181212.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+92d239fe,gq_pnud_form_ministros_v1_2025,TIN-SRV-MNT-MNT,2026-01-30,15.09,SAS,GAP_DATA_05_PAYMENTS_Images/92d239fe.Invoice.030310.png,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)
+140807f4,cr_unicef_lidera_clima_2026,ARI-VAI-VAI,2026-06-10,5.0,SAS,GAP_DATA_05_PAYMENTS_Files_/140807f4.Invoice.233510.pdf,USD,monto < 1.000 (patrón USD),USD,Claude Code (delegación de dirección 2026-08-29),2026-08-29,monto < 1.000 (patrón USD)

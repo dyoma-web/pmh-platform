@@ -109,12 +109,27 @@ Reglas transversales:
 
 ---
 
-## Pendientes de firma (bloquean la implementación)
+## Decisiones adoptadas (delegación de dirección, 2026-08-29)
 
-1. Costo fijo mensual: monto y fuente de actualización (M1, M7).
-2. ¿El costo interno causado entra al margen por proyecto? (M2 — recomendación: sí, con desglose interno/externo visible).
-3. Destino de las bolsas contables: ¿prorrateo por regla o overhead no distribuido? (M2, M9).
-4. TRM para reporte cuando el evento no la trae: ¿TRM pactada del proyecto o TRM del día? (transversal).
-5. Umbrales definitivos de M3 (70/90) y M5 (30/60/90): confirmar o ajustar.
+Los 5 pendientes se resuelven así, con carácter **provisional hasta ratificación** (issue de
+ratificación en GitHub). La implementación puede arrancar con estas definiciones.
 
-*Versión 0.1 · 2026-08-29 · Firmas: ☐ Dirección ☐ Administración ☐ Data steward*
+1. **Costo fijo mensual (M1, M7):** parámetro capturado por Administración al cierre de cada mes.
+   Valor inicial = promedio mensual de los últimos 6 meses de (bolsas contables `OPERACIONES` +
+   `INFRA_INTERNA` + `AMORTIZACION` + suscripciones corporativas de `inf_data_costs`). Se calcula
+   en F1 con los datos sincronizados y queda visible junto a la métrica ("costo fijo usado: $X,
+   actualizado el D").
+2. **Costo interno en el margen (M2): SÍ entra.** El margen por proyecto incluye la nómina causada
+   (es margen real), con desglose interno/externo siempre visible para no castigar la lectura de
+   los proyectos pequeños tipo LTA.
+3. **Bolsas contables (M2, M9): overhead corporativo NO distribuido.** Se muestran como línea
+   propia en los agregados ("overhead no distribuido"), nunca dentro del margen por proyecto.
+   El prorrateo por regla queda como mejora de F8, cuando exista dato de dedicación.
+4. **TRM de reporte (transversal):** la TRM del evento cuando existe; si no, la TRM pactada del
+   proyecto (`CostingAmount/ContractAmount`); nunca una TRM de mercado implícita. Toda cifra
+   convertida indica qué TRM usó.
+5. **Umbrales:** se confirman los iniciales — M3: Fine < 70 % · Risk 70–90 % · Alert > 90 %;
+   M5: tramos 30/60/90. Viven en configuración y se recalibran con dos meses de operación.
+
+*Versión 0.2 · 2026-08-29 · Estado: adoptado por delegación — ratificación pendiente en comité
+(☐ Dirección ☐ Administración ☐ Data steward)*
