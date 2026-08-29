@@ -18,7 +18,8 @@ entornos y una disciplina estricta de portabilidad.
 | `prod` | `pmh-prod` | al iniciar captura real (F3) | Pro + PITR si se justifica; **proyecto separado desde el día uno del dato real** |
 
 Región: **AWS us-east-1** (mejor latencia estable desde Bogotá ~70-90 ms; São Paulo no mejora y
-encarece el ecosistema alrededor).
+encarece el ecosistema alrededor). *Nota (2026-08-29): `pmh-dev` se creó en `ca-central-1`; se
+mantiene así para dev (latencia aceptable). `pmh-beta` y `pmh-prod` se crearán en us-east-1.*
 
 Qué resuelve Supabase además del motor: **Auth** (OIDC con Google, restringido al dominio
 `innovahub.org` — cero contraseñas nuevas), **RLS** nativa para la PII, **Storage** compatible S3
