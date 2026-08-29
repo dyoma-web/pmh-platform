@@ -27,6 +27,8 @@ service-account*.json
 *.xls
 *.csv
 !docs/**/*.csv
+!data-quality/**/*.csv
+!seeds/**/*.csv
 data/
 exports/
 *_Files_/
