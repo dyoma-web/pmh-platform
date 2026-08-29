@@ -1,12 +1,16 @@
 import { q } from "../lib/db";
 import { cop, mcop, n0, n1, fecha } from "../lib/fmt";
 import ChartCaja from "./chart-caja";
+import Historia from "./historia";
 
 export const dynamic = "force-dynamic";
 
 export default async function Cockpit() {
   const [k] = await q("select * from metrics.v0_kpis");
   const caja = await q("select * from metrics.v0_caja_13s");
+  const [topCliente] = await q(`
+    select cliente, sum(monto_cop) m, count(*) n
+    from metrics.v0_cartera_resumen group by cliente order by m desc limit 1`);
   const acciones = await q("select * from metrics.v0_acciones");
   const duenos = await q("select * from metrics.v0_semaforos_dueno limit 6");
   const margen = await q("select * from metrics.v0_margen_linea");
@@ -32,36 +36,17 @@ export default async function Cockpit() {
 
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Cockpit</h1>
-          <div className="sub">La misma verdad para el comité del lunes.</div>
-        </div>
-        <div className="meta">Vista certificada v0 · M1–M12 en construcción</div>
-      </div>
+      <Historia
+        num="01"
+        seccion="Cockpit"
+        titulo={`$ ${mcop(k.cartera_vencida_cop)} M vencidos ordenan la semana`}
+        lede={`Es el ${n1(pctVencida)} % de la cartera pendiente, en ${n0(
+          k.hitos_vencidos
+        )} hitos — y ${mcop(topCliente?.m)} M son de ${topCliente?.cliente}: la primera llamada del lunes ya tiene nombre. Debajo, el instrumento completo; si algún control no reconcilia, Calidad de datos lo dice antes de que lo descubras aquí.`}
+        lado={<span className="notaf">VISTA v0 · M5</span>}
+      />
 
       <div className="contenido">
-        {/* Cifra que manda (plancha cartográfica 14B) */}
-        <section className="plancha">
-          <div className="manda">
-            <div>
-              <div className="cifra">{mcop(k.cartera_vencida_cop)}</div>
-              <div className="notaf" style={{ marginTop: 8 }}>
-                millones COP vencidos · M5
-              </div>
-            </div>
-            <div className="quee">
-              <div className="t1">
-                {n1(pctVencida)} % de {mcop(k.cartera_pendiente_cop)} M en cartera pendiente
-              </div>
-              <div className="t2">
-                {n0(k.hitos_vencidos)} hitos de cobro con fecha esperada cumplida y sin acreditar.
-                Es la cifra que ordena la semana.
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Fila de KPI: casillas de un instrumento */}
         <section className="plancha">
           <div className="kpis">

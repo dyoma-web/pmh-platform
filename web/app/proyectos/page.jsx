@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { q } from "../../lib/db";
 import { cop, mcop, n0, n1, fecha } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -23,18 +24,21 @@ export default async function Proyectos({ searchParams }) {
   );
   const totCosteo = filas.reduce((s, f) => s + Number(f.costeo_cop || 0), 0);
 
+  const criticos = filas.filter((f) => f.semaforo === "critico").length;
+  const regularizar = filas.filter((f) => f.semaforo === "alerta").length;
+  const titulo = buscar
+    ? `${n0(filas.length)} resultados para «${buscar}»`
+    : criticos > 0
+      ? `${n0(criticos)} proyectos piden atención antes que los demás`
+      : `${n0(filas.length)} proyectos, ninguno en rojo`;
+  const lede = buscar
+    ? `Filtrando ${estado ? ES[estado].toLowerCase() + "s" : "todo el portafolio"} por «${buscar}». El orden sigue siendo por semáforo: lo urgente arriba.`
+    : `Los de arriba tienen facturas vencidas por cobrar; les siguen ${n0(regularizar)} con fecha de cierre cumplida que exigen prórroga o cierre. Los demás pueden esperar a mañana. Costeo visible: ${mcop(totCosteo)} M COP.`;
+
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Portafolio</h1>
-          <div className="sub">
-            {n0(filas.length)} proyectos{estado ? ` en estado ${ES[estado] ?? estado}` : ""} ·
-            ordenados por semáforo
-          </div>
-        </div>
-        <div className="meta">costeo total {mcop(totCosteo)} M COP</div>
-      </div>
+      <Historia num="02" seccion="Proyectos · Portafolio" titulo={titulo} lede={lede}
+        lado={<span className="notaf">{n0(filas.length)} FILAS · ORDEN POR SEMÁFORO</span>} />
 
       <div className="contenido">
         <section className="plancha">

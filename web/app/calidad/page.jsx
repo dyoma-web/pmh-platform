@@ -1,5 +1,6 @@
 import { q } from "../../lib/db";
 import { n0, cop, fechaHora } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -24,15 +25,30 @@ export default async function Calidad() {
     where norm_accion = 'directo' and project_code_canon not in
       (select project_code from staging.projects) and project_code is not null`);
 
+  const controlables = control.filter((c) => CONTROL[c.metrica]?.esperado != null);
+  const ok = controlables.filter((c) => {
+    const cfg = CONTROL[c.metrica];
+    return Math.abs(Number(c.valor) - cfg.esperado) / Math.max(cfg.esperado, 1) < 0.001;
+  }).length;
+  const todoOk = ok === controlables.length;
+
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Calidad de datos</h1>
-          <div className="sub">Reconciliación contra las cifras de control y estado del sync.</div>
-        </div>
-        <div className="meta">M10 · dueño: data steward</div>
-      </div>
+      <Historia
+        num="08"
+        seccion="Administración · Calidad de datos"
+        titulo={
+          todoOk
+            ? "Puedes confiar en lo que ves"
+            : `${n0(controlables.length - ok)} controles no reconcilian`
+        }
+        lede={
+          todoOk
+            ? `Los ${n0(ok)} controles fijos reconcilian con el corte contable del 27 de agosto, y la cartera vencida se mueve solo porque el tiempo pasa. Esta pantalla existe para que la confianza no sea un acto de fe: cuando algo no cuadre, aquí aparece primero, con el monto exacto de la diferencia.`
+            : `Hasta que estos controles vuelvan a cuadrar, trata las cifras de las demás pantallas como provisionales. Aquí está cuál falla y por cuánto.`
+        }
+        lado={<span className="notaf">M10 · DUEÑO: DATA STEWARD</span>}
+      />
 
       <div className="contenido">
         <section className="plancha">

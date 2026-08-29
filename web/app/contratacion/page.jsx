@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { q } from "../../lib/db";
 import { cop, mcop, n0, fecha } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -87,16 +88,21 @@ export default async function Contratacion() {
 
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Contratación · pagos a terceros</h1>
-          <div className="sub">
-            {n0(Number(k.por_autorizar_n) + Number(k.por_validar_n))} pagos en cola ·{" "}
-            {n0(k.bloqueados_n)} bloqueados por documentos
-          </div>
-        </div>
-        <div className="meta">M8 · cumplimiento legal {k.cumplimiento_pct ?? "—"} %</div>
-      </div>
+      <Historia
+        num="04"
+        seccion="Contratación · pagos a terceros"
+        titulo={
+          Number(k.bloqueados_n) > 0
+            ? `${n0(k.bloqueados_n)} pagos no se pueden pagar: falta papel, no plata`
+            : `${n0(Number(k.por_autorizar_n) + Number(k.por_validar_n))} pagos esperan firma`
+        }
+        lede={`En cola hay ${n0(k.por_autorizar_n)} pagos esperando la primera firma (gestoras) y ${n0(
+          k.por_validar_n
+        )} la segunda (administración). Los bloqueados no tienen botón de pagar — tienen la acción que los desbloquea: pedir la cuenta de cobro o el soporte de seguridad social. Y quedan ${n0(
+          k.pagados_sin_soporte_n
+        )} pagos históricos hechos sin soporte: riesgo laboral acumulado que baja solo cuando alguien lo persigue.`}
+        lado={<span className="notaf">M8 · CUMPLIMIENTO {k.cumplimiento_pct ?? "—"} %</span>}
+      />
 
       <div className="contenido">
         <section className="plancha">

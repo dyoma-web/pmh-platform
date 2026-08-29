@@ -1,5 +1,6 @@
 import { q } from "../../lib/db";
 import { cop, n0 } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -14,15 +15,13 @@ export default async function Catalogo() {
 
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Catálogo IHPSC</h1>
-          <div className="sub">
-            Tarifario provisional: mediana de precios realmente pagados en 2026.
-          </div>
-        </div>
-        <div className="meta">M11 · cobertura {n0(pct)} % del monto vendido · umbral 80 %</div>
-      </div>
+      <Historia
+        num="05"
+        seccion="Catálogo IHPSC"
+        titulo={`El catálogo ya sabe cuánto cuesta el ${n0(pct)} % de lo que vendes`}
+        lede={`Cada costo de referencia sale de la mediana de lo que InnovaHub pagó de verdad en 2026 — no de una estimación. Con esto, la próxima cotización deja de ser «lo que nos pareció»: es un precio con evidencia. El taller de tarifas (issue #10) convierte lo provisional en validado.`}
+        lado={<span className="notaf">M11 · UMBRAL 80 % DEL MONTO VENDIDO</span>}
+      />
 
       <div className="contenido">
         <section className="plancha">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { q } from "../../lib/db";
 import { cop, n0, fecha } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -23,17 +24,19 @@ export default async function Infraestructura() {
 
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Infraestructura</h1>
-          <div className="sub">
-            {n0(items.length)} ítems por proyecto · {n0(subs.length)} suscripciones corporativas
-          </div>
-        </div>
-        <div className="meta">
-          M9 · {n0(vencidas)} encendidos con fin vencido
-        </div>
-      </div>
+      <Historia
+        num="06"
+        seccion="Infraestructura"
+        titulo={
+          vencidas > 0
+            ? `${n0(vencidas)} recursos encendidos que nadie renovó`
+            : "Toda la infraestructura al día"
+        }
+        lede={`Cada uno de esos «ON · vencida» significa una de dos cosas: se sigue pagando sin que nadie haya renovado el registro, o se apagó y el sistema no se enteró. Ambas cuestan plata o confianza. Abajo están primero, con su fecha, para resolverlos uno a uno; luego las ${n0(
+          subs.length
+        )} suscripciones corporativas con su presupuesto y su último pago con soporte.`}
+        lado={<span className="notaf">M9 · {n0(items.length)} ÍTEMS DE PROYECTO</span>}
+      />
 
       <div className="contenido">
         <section className="plancha">

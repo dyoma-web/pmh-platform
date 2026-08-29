@@ -1,5 +1,6 @@
 import { q } from "../../lib/db";
-import { cop, mcop, n0, fecha } from "../../lib/fmt";
+import { cop, mcop, n0, n1, fecha } from "../../lib/fmt";
+import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,9 @@ export default async function Cartera() {
   const [tot] = await q(
     "select count(*) n, sum(expected_cop) m from metrics.v0_cartera_aging"
   );
+  const [top] = await q(`
+    select cliente, partner_manager, sum(expected_cop) m, count(*) n
+    from metrics.v0_cartera_aging group by 1,2 order by m desc limit 1`);
   const proximos = await q(`
     select i.project_code, p.partner_entity cliente, p.partner_manager,
            i.expected_date::date f, i.expected_cop, i.status
@@ -19,17 +23,24 @@ export default async function Cartera() {
 
   const sevTramo = (d) => (d > 60 ? "critico" : d > 30 ? "alerta" : "pendiente");
 
+  const pctTop = tot.m ? (100 * Number(top?.m ?? 0)) / Number(tot.m) : 0;
   return (
     <>
-      <div className="topbar">
-        <div>
-          <h1>Cartera y cobro</h1>
-          <div className="sub">
-            {cop(tot.m)} COP vencidos · {n0(tot.n)} hitos
-          </div>
-        </div>
-        <div className="meta">M5 · M6 · dueño: partner manager</div>
-      </div>
+      <Historia
+        num="03"
+        seccion="Cartera y cobro"
+        titulo={top ? `A ${top.cliente} hay que cobrarle primero` : "No hay cartera vencida"}
+        lede={
+          top
+            ? `${top.cliente} debe ${mcop(top.m)} M de los ${mcop(tot.m)} M vencidos (${n1(
+                pctTop
+              )} %) en ${n0(top.n)} ${Number(top.n) === 1 ? "factura" : "facturas"} — responsable de la relación: ${
+                top.partner_manager
+              }. Cobrar lo demás son ${n0(Number(tot.n) - Number(top.n))} gestiones más, ordenadas abajo por monto: empieza por arriba.`
+            : "Todos los hitos con fecha cumplida están acreditados."
+        }
+        lado={<span className="notaf">M5 · M6 · DUEÑO: PARTNER MANAGER</span>}
+      />
 
       <div className="contenido">
         <section className="plancha">

@@ -13,18 +13,26 @@ const ITEMS = [
   { href: "/calidad", num: "08", label: "Calidad de datos" },
 ];
 
-export default function Nav() {
+export default function Nav({ counts = {} }) {
   const path = usePathname();
   const activo = (href) =>
     href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
   return (
     <nav aria-label="Secciones">
-      {ITEMS.map((it) => (
-        <Link key={it.href} href={it.href} aria-current={activo(it.href) ? "page" : undefined}>
-          <span className="num">{it.num}</span>
-          {it.label}
-        </Link>
-      ))}
+      {ITEMS.map((it) => {
+        const c = counts[it.href];
+        return (
+          <Link key={it.href} href={it.href} aria-current={activo(it.href) ? "page" : undefined}>
+            <span className="num">{it.num}</span>
+            {it.label}
+            {c != null && Number(c) > 0 && (
+              <span className={"cnt" + (["/cartera", "/proyectos"].includes(it.href) ? " critico" : "")}>
+                {c}
+              </span>
+            )}
+          </Link>
+        );
+      })}
     </nav>
   );
 }
