@@ -37,7 +37,21 @@ Sucesor del sistema PMH actual (AppSheet sobre Google Sheets). Repositorio **pri
 PostgreSQL (restricciones fuertes, RLS, ledger `money_event`, `event_log` append-only) ·
 API con máquinas de estado · front web responsive/PWA · Metabase sobre vistas certificadas ·
 auth OIDC contra Google Workspace. Elecciones finas de framework se toman al iniciar F2 y se
-documentan en `docs/` como ADR.
+documentan en `docs/adr/` como ADR.
+
+## Dónde viven los datos (ADR 0001 — vinculante)
+
+**Supabase (Postgres 16, us-east-1)**: proyectos `pmh-dev` / `pmh-beta` / `pmh-prod`.
+Esquemas por dominio (`staging`, `ref`, `core`, …, `metrics`, `pii`, `audit`) creados en
+`db/migrations/0001`. Reglas de portabilidad que se revisan en cada PR:
+
+- El esquema SOLO cambia por migración en `db/migrations/` (`python tools/migrate.py`);
+  las migraciones aplicadas son inmutables. El dashboard de Supabase no se usa para DDL.
+- Solo Postgres estándar en el núcleo; nada de lógica en Edge Functions.
+- Storage por protocolo S3 (clave = hash) · Auth solo OIDC Google · BI solo con `bi_reader`
+  sobre `metrics`.
+- Semillas: `seeds/*.csv` → `python tools/cargar_seeds.py` (upsert a `ref.*`).
+- Conexión vía `DATABASE_URL` en `.env` (ver `.env.example`); jamás credenciales en código.
 
 ## Cifras de control (corte 2026-08-27)
 

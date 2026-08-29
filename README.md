@@ -24,6 +24,19 @@ Leer en este orden:
 | [03 · Especificación funcional](docs/03-especificacion-funcional.md) | El QUÉ de PMH 2.0: principios, roles y permisos, arquitectura de información, 12 pantallas, 12 métricas certificadas, dinámicas de captura y consumo, bloques F0–F8 | Todo el equipo |
 | [04 · Brief de diseño](docs/04-brief-diseno.md) | Encargo de identidad visual y manual de marca (para Claude Design): principios, territorios, entregables, restricciones y criterios de evaluación | Diseño |
 
+## Dónde viven los datos
+
+**[ADR 0001](docs/adr/0001-donde-vive-la-informacion.md)**: PostgreSQL gestionado en **Supabase**
+(us-east-1), entornos `pmh-dev` → `pmh-beta` → `pmh-prod`, con reglas de portabilidad vinculantes
+(migraciones SQL en git, solo Postgres estándar, storage S3, auth OIDC, BI solo sobre `metrics`)
+y plan de salida probado (`pg_dump` + `rclone` → cualquier Postgres). Arranque:
+
+```
+cp .env.example .env        # llenar con las claves del proyecto Supabase
+python tools/migrate.py     # aplica db/migrations/ (esquemas + ref)
+python tools/cargar_seeds.py  # carga las semillas de F0 en ref.*
+```
+
 ## Decisiones de arquitectura (resumen)
 
 - **Datos:** PostgreSQL con restricciones fuertes, RLS para PII, ledger financiero único
