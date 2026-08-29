@@ -22,7 +22,7 @@ async function corte() {
 export default async function RootLayout({ children }) {
   const c = await corte();
   return (
-    <html lang="es-CO">
+    <html lang="es-CO" data-theme="light">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

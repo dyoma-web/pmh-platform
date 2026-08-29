@@ -167,3 +167,84 @@ SELECT dueno, count(*) AS abiertos, max(dias) AS antiguedad_max, sum(monto_cop) 
 FROM metrics.v0_semaforos GROUP BY dueno ORDER BY abiertos DESC;
 
 GRANT SELECT ON ALL TABLES IN SCHEMA metrics TO bi_reader;
+
+-- ── M1 (aprox. F1) · Caja a 13 semanas ─────────────────────────────────────
+-- Cobros = hitos no cobrados por semana esperada (los vencidos caen en la semana
+-- actual, criterio conservador marcado). Pagos = cronograma no pagado a terceros.
+CREATE OR REPLACE VIEW metrics.v0_caja_13s AS
+WITH sem AS (
+  SELECT gs::date AS semana
+  FROM generate_series(date_trunc('week', current_date),
+                       date_trunc('week', current_date) + interval '12 weeks',
+                       interval '1 week') gs
+), cob AS (
+  SELECT greatest(date_trunc('week', expected_date)::date,
+                  date_trunc('week', current_date)::date) s,
+         sum(expected_cop) m
+  FROM staging.income WHERE status IN ('Scheduled','Invoiced') GROUP BY 1
+), pag AS (
+  SELECT greatest(date_trunc('week', payment_date)::date,
+                  date_trunc('week', current_date)::date) s,
+         sum(payment_amount) m
+  FROM staging.contract_payments WHERE adm_validation <> 'Paid' GROUP BY 1
+)
+SELECT sem.semana,
+       COALESCE(c.m, 0) AS cobros_cop,
+       COALESCE(p.m, 0) AS pagos_cop,
+       sum(COALESCE(c.m,0) - COALESCE(p.m,0)) OVER (ORDER BY sem.semana) AS saldo_cop
+FROM sem
+LEFT JOIN cob c ON c.s = sem.semana
+LEFT JOIN pag p ON p.s = sem.semana
+ORDER BY sem.semana;
+
+-- ── Portafolio con semáforo, ejecución y próximo hito ──────────────────────
+CREATE OR REPLACE VIEW metrics.v0_portafolio AS
+SELECT p.project_code,
+       p.partner_entity  AS cliente,
+       p.country         AS pais,
+       p.service_line    AS linea,
+       p.project_manager AS gestora,
+       p.status          AS estado,
+       p.costing_amount  AS costeo_cop,
+       p.closing_date::date AS cierre,
+       c.costo           AS causado_cop,
+       round(c.costo / nullif(p.costing_amount, 0) * 100, 1) AS ejec_pct,
+       h.prox_hito, h.prox_monto,
+       COALESCE(v.vencidos_n, 0)  AS vencidos_n,
+       COALESCE(v.vencidos_cop,0) AS vencidos_cop,
+       CASE WHEN COALESCE(v.vencidos_n,0) > 0 THEN 'critico'
+            WHEN p.status = 'Active' AND p.closing_date::date < current_date THEN 'alerta'
+            WHEN p.status = 'Active' THEN 'correcto'
+            ELSE 'pendiente' END AS semaforo
+FROM staging.projects p
+LEFT JOIN (SELECT project_code_canon pc, sum(amount) costo
+           FROM staging.v_costs_norm GROUP BY 1) c ON c.pc = p.project_code
+LEFT JOIN (SELECT project_code, min(expected_date)::date prox_hito,
+                  (array_agg(expected_cop ORDER BY expected_date))[1] prox_monto
+           FROM staging.income
+           WHERE status IN ('Scheduled','Invoiced') AND expected_date::date >= current_date
+           GROUP BY 1) h USING (project_code)
+LEFT JOIN (SELECT project_code, count(*) vencidos_n, sum(expected_cop) vencidos_cop
+           FROM metrics.v0_cartera_aging GROUP BY 1) v USING (project_code);
+
+-- ── Vencimientos de los próximos 7 días (Mi día) ───────────────────────────
+CREATE OR REPLACE VIEW metrics.v0_proximos_7d AS
+SELECT 'hito_cobro'::text tipo, i.project_code, p.partner_entity contraparte,
+       i.expected_date::date fecha, i.expected_cop monto_cop
+FROM staging.income i JOIN staging.projects p USING (project_code)
+WHERE i.status IN ('Scheduled','Invoiced')
+  AND i.expected_date::date BETWEEN current_date AND current_date + 7
+UNION ALL
+SELECT 'pago_contratista', c.project_code, c.contractor_name,
+       cp.payment_date::date, cp.payment_amount
+FROM staging.contract_payments cp JOIN staging.contracts c USING (contract_code)
+WHERE cp.adm_validation <> 'Paid'
+  AND cp.payment_date::date BETWEEN current_date AND current_date + 7
+UNION ALL
+SELECT 'fin_infraestructura', i.project_code, i.provider,
+       i.end_date::date, i.monthly_budget
+FROM staging.infra_items i
+WHERE i.status = 'ON' AND i.end_date::date BETWEEN current_date AND current_date + 7
+ORDER BY fecha;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA metrics TO bi_reader;

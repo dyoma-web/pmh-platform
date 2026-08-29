@@ -11,7 +11,14 @@ const REGLA = {
   infra_on_vencida: { t: "Infraestructura encendida y vencida", sev: "pendiente" },
 };
 
+const TIPO7 = {
+  hito_cobro: "Hito de cobro",
+  pago_contratista: "Pago a contratista",
+  fin_infraestructura: "Fin de infraestructura",
+};
+
 export default async function MiDia() {
+  const proximos = await q("select * from metrics.v0_proximos_7d");
   const tareas = await q(`
     select * from metrics.v0_semaforos
     order by case regla
@@ -39,6 +46,33 @@ export default async function MiDia() {
       </div>
 
       <div className="contenido">
+        <section className="plancha">
+          <h2>
+            Vence en los próximos 7 días <span className="mid">{n0(proximos.length)}</span>
+          </h2>
+          {proximos.length === 0 ? (
+            <div className="vacio">
+              <div className="t">Nada vence en los próximos 7 días.</div>
+            </div>
+          ) : (
+            <div className="instr">
+              {proximos.map((p, i) => (
+                <div className="fila" key={i}>
+                  <span className="lab">
+                    {TIPO7[p.tipo] ?? p.tipo} · {p.contraparte}
+                    <span className="mono" style={{ marginLeft: 8 }}>{p.project_code}</span>
+                  </span>
+                  <span className="mono">
+                    {new Date(p.fecha).getDate()}{" "}
+                    {["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"][new Date(p.fecha).getMonth()]}
+                  </span>
+                  <span className="val">{p.monto_cop ? cop(p.monto_cop) : "—"}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
         {tareas.length === 0 && (
           <section className="plancha">
             <div className="vacio">

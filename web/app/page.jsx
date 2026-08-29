@@ -1,10 +1,12 @@
 import { q } from "../lib/db";
 import { cop, mcop, n0, n1, fecha } from "../lib/fmt";
+import ChartCaja from "./chart-caja";
 
 export const dynamic = "force-dynamic";
 
 export default async function Cockpit() {
   const [k] = await q("select * from metrics.v0_kpis");
+  const caja = await q("select * from metrics.v0_caja_13s");
   const acciones = await q("select * from metrics.v0_acciones");
   const duenos = await q("select * from metrics.v0_semaforos_dueno limit 6");
   const margen = await q("select * from metrics.v0_margen_linea");
@@ -117,6 +119,18 @@ export default async function Cockpit() {
               <div className="mid">M6</div>
             </div>
           </div>
+        </section>
+
+        <section className="plancha">
+          <h2>
+            Caja proyectada · 13 semanas{" "}
+            <span className="mid">M1 (APROX) · COBROS NO COBRADOS VS PAGOS NO PAGADOS · COP</span>
+          </h2>
+          <ChartCaja data={caja} />
+          <p style={{ fontSize: 12, color: "var(--tinta-2)", margin: "10px 0 0" }}>
+            Los hitos y pagos ya vencidos caen en la semana actual (criterio conservador). En F2 la
+            probabilidad de cobro por cliente refinará esta curva.
+          </p>
         </section>
 
         <div className="g32">
