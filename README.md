@@ -61,3 +61,13 @@ Hoy: 1,5 · tras F5: ≥ 6 · tras F8: 9.
 - Migraciones de BD solo por script versionado (nunca cambios a mano en producción).
 - **Nunca** subir a este repo: datos personales de contratistas, facturas/soportes, exports de las
   hojas de producción, credenciales (`.env`). Ver `.gitignore`.
+
+## Front (Cota · F1 solo lectura)
+
+```
+cd web && npm install && npm run dev    # http://localhost:3200
+```
+
+Cockpit (cifra que manda + KPI + acciones + aging), Cartera, Mi día (semáforos) y Calidad de
+datos, server-rendered desde las vistas `metrics.v0_*`. Identidad según
+`design/cota-manual-de-marca.html` (manual Cota 2.0) y wireframe `design/cota-plataforma-wireframe.html`.

@@ -118,3 +118,52 @@ UNION ALL SELECT 'contratos_n', count(*)::numeric FROM staging.contracts;
 
 -- BI solo ve metrics
 GRANT SELECT ON ALL TABLES IN SCHEMA metrics TO bi_reader;
+
+-- ── KPIs del cockpit (una fila) ────────────────────────────────────────────
+CREATE OR REPLACE VIEW metrics.v0_kpis AS
+SELECT
+  (SELECT sum(expected_cop) FROM staging.income WHERE status IN ('Scheduled','Invoiced'))            AS cartera_pendiente_cop,
+  (SELECT sum(expected_cop) FROM metrics.v0_cartera_aging)                                           AS cartera_vencida_cop,
+  (SELECT count(*) FROM metrics.v0_cartera_aging)                                                    AS hitos_vencidos,
+  (SELECT count(*) FROM staging.projects WHERE status='Active')                                      AS proyectos_activos,
+  (SELECT count(*) FROM staging.projects WHERE status='Active' AND closing_date::date<current_date)  AS activos_en_regularizacion,
+  (SELECT sum(expected_cop) FROM staging.income i JOIN staging.projects p USING (project_code)
+     WHERE i.status='Scheduled' AND p.status IN ('Active','Paused'))                                 AS backlog_cop,
+  (SELECT sum(payment_amount) FROM staging.contract_payments WHERE adm_validation<>'Paid')           AS pagos_terceros_pend_cop,
+  (SELECT count(*) FROM staging.contract_payments WHERE adm_validation<>'Paid')                      AS pagos_terceros_pend_n,
+  (SELECT count(*) FROM staging.contract_payments WHERE adm_validation='Paid' AND contractor_legal IS NULL) AS pagos_sin_soporte_n,
+  (SELECT round(sum(c.costo)/nullif(sum(i2.acreditado),0)*100,1) FROM
+     (SELECT project_code, sum(expected_cop) acreditado FROM staging.income WHERE status='Credited' GROUP BY 1) i2
+     JOIN (SELECT project_code_canon project_code, sum(amount) costo FROM staging.v_costs_norm GROUP BY 1) c USING (project_code)
+     JOIN staging.projects p USING (project_code) WHERE p.status='Completed')                        AS costo_pct_completados,
+  (SELECT round(sum((i.credited_date::date - i.expected_date::date) * i.expected_cop)/nullif(sum(i.expected_cop),0))
+     FROM staging.income i WHERE i.status='Credited' AND i.credited_date IS NOT NULL
+       AND i.credited_date >= '2022-01-01' AND i.credited_date > current_date - interval '12 months') AS dso_ponderado_dias,
+  (SELECT max(finished_at) FROM staging._sync_run)                                                   AS corte;
+
+-- ── DSO por cliente (12 meses móviles, ponderado por monto) ────────────────
+CREATE OR REPLACE VIEW metrics.v0_dso_cliente AS
+SELECT p.partner_entity AS cliente,
+       round(sum((i.credited_date::date - i.expected_date::date) * i.expected_cop)
+             / nullif(sum(i.expected_cop),0)) AS dso_dias,
+       count(*) AS hitos, sum(i.expected_cop) AS monto_cop
+FROM staging.income i JOIN staging.projects p USING (project_code)
+WHERE i.status='Credited' AND i.credited_date IS NOT NULL
+  AND i.credited_date >= '2022-01-01'
+  AND i.credited_date > current_date - interval '12 months'
+GROUP BY p.partner_entity;
+
+-- ── Acciones de la semana (top vencidos por monto) ─────────────────────────
+CREATE OR REPLACE VIEW metrics.v0_acciones AS
+SELECT regla, dueno, project_code, referencia, monto_cop, dias, detalle
+FROM metrics.v0_semaforos
+WHERE regla IN ('hito_vencido','pago_contratista_vencido')
+ORDER BY monto_cop DESC NULLS LAST
+LIMIT 5;
+
+-- ── Semáforos agrupados por dueño ──────────────────────────────────────────
+CREATE OR REPLACE VIEW metrics.v0_semaforos_dueno AS
+SELECT dueno, count(*) AS abiertos, max(dias) AS antiguedad_max, sum(monto_cop) AS monto_cop
+FROM metrics.v0_semaforos GROUP BY dueno ORDER BY abiertos DESC;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA metrics TO bi_reader;

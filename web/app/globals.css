@@ -1,0 +1,265 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   COTA · Sistema de diseño v0 — implementación del Manual de marca 2.0
+   Territorio: instrumento de precisión × cartografía operativa.
+   Reglas duras: el espectro de identidad nunca toca un dato ni un semáforo;
+   la escala semántica pertenece a los datos; relieve solo en superficies de
+   decisión; espacios en base 4; radios 0 (celda) / 16 (plancha) / pill.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Neutros — modo claro (captura y análisis) */
+  --campo: #edf1f9;
+  --plancha: #ffffff;
+  --surco: #e4eaf7;
+  --hover: #d9e2f6;
+  --tinta-1: #101b3d;
+  --tinta-2: #3d4a6b;
+  --tinta-3: #5b6884;
+  --filete: #d8e0f1;
+
+  /* Acento de marca (tinta violeta) — solo selección activa, enlace y graduación */
+  --acento: #4b3fa8;
+  --acento-suave: #ebe9f8;
+
+  /* Escala semántica — pertenece a los datos, no a la marca */
+  --critico: #c62828;
+  --alerta: #9a5500;
+  --correcto: #10794f;
+  --info: #2c7be5;
+  --pendiente: #5b6884;
+
+  /* Espectro Cota — SOLO identidad (wordmark, cabeceras, acción primaria) */
+  --espectro: linear-gradient(96deg, #7a3be8 0%, #4f45e4 26%, #2c7be5 52%, #35c1e8 74%, #ff8a5b 100%);
+
+  /* Relieve: privilegio de superficies con decisión */
+  --relieve: 6px 6px 14px rgba(16, 27, 61, 0.10), -4px -4px 10px rgba(255, 255, 255, 0.85);
+
+  --fx-archivo: "Archivo", "Segoe UI", Helvetica, sans-serif;
+  --fx-mono: "IBM Plex Mono", Consolas, monospace;
+  --fx-petrona: "Petrona", Georgia, serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Consola nocturna: diseñada, no invertida */
+    --campo: #0b1020;
+    --plancha: #131a2e;
+    --surco: #1c2440;
+    --hover: #27314f;
+    --tinta-1: #e7ebf7;
+    --tinta-2: #aab4d1;
+    --tinta-3: #7e89a8;
+    --filete: #27314f;
+    --acento: #8e82f0;
+    --acento-suave: #232048;
+    --critico: #f0918a;
+    --alerta: #e0aa5e;
+    --correcto: #63c493;
+    --info: #7fb3f0;
+    --pendiente: #8b96b4;
+    --relieve: 6px 6px 16px rgba(0, 0, 0, 0.45), -3px -3px 9px rgba(64, 78, 120, 0.18);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--campo);
+  color: var(--tinta-1);
+  font-family: var(--fx-archivo);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--acento); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+/* ── Lienzo: raíl + contenido ─────────────────────────────────────────── */
+.lienzo { display: grid; grid-template-columns: 216px 1fr; min-height: 100vh; }
+@media (max-width: 900px) { .lienzo { grid-template-columns: 1fr; } .rail { display: none; } }
+
+/* Raíl de navegación */
+.rail {
+  border-right: 1px solid var(--filete);
+  background: var(--plancha);
+  padding: 24px 0;
+  display: flex; flex-direction: column; gap: 0;
+  position: sticky; top: 0; height: 100vh;
+}
+.wordmark { padding: 0 24px 4px; }
+.wordmark .cota {
+  font-weight: 600; font-size: 19px; letter-spacing: 0.13em; color: var(--tinta-1);
+}
+.wordmark .grad { height: 2px; background: var(--espectro); margin-top: 6px; width: 72px; }
+.wordmark .emisor {
+  font-family: var(--fx-mono); font-size: 10px; letter-spacing: 0.08em;
+  color: var(--tinta-3); margin-top: 8px;
+}
+.rail nav { margin-top: 32px; display: flex; flex-direction: column; }
+.rail nav a {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 10px 24px; color: var(--tinta-2); text-decoration: none;
+  border-left: 2px solid transparent; font-size: 13px; letter-spacing: 0.02em;
+}
+.rail nav a .num { font-family: var(--fx-mono); font-size: 10px; color: var(--tinta-3); }
+.rail nav a:hover { background: var(--hover); text-decoration: none; }
+.rail nav a[aria-current="page"] {
+  color: var(--tinta-1); border-left-color: var(--acento); background: var(--acento-suave);
+}
+.rail .pie {
+  margin-top: auto; padding: 16px 24px 0;
+  font-family: var(--fx-mono); font-size: 10px; color: var(--tinta-3); line-height: 1.7;
+  border-top: 1px solid var(--filete);
+}
+
+/* Barra superior */
+.topbar {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 20px 32px 0; flex-wrap: wrap;
+}
+.topbar h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+.topbar .sub { color: var(--tinta-2); font-size: 14px; }
+.topbar .meta {
+  font-family: var(--fx-mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--tinta-3); text-transform: uppercase;
+}
+.contenido { padding: 24px 32px 64px; display: flex; flex-direction: column; gap: 32px; max-width: 1280px; }
+
+/* ── Plancha (superficie de decisión: radio 16 + relieve) ─────────────── */
+.plancha {
+  background: var(--plancha); border-radius: 16px; box-shadow: var(--relieve);
+  padding: 24px;
+}
+.plancha > h2, .seccion-titulo {
+  font-family: var(--fx-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-3);
+  margin: 0 0 16px;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+}
+.seccion-titulo .mid { color: var(--tinta-3); }
+
+/* ── Fila de KPI: casillas de un instrumento, separadas por filete ────── */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.kpi { padding: 4px 20px 8px; border-left: 1px solid var(--filete); }
+.kpi:first-child { border-left: 0; padding-left: 0; }
+.kpi .et { font-family: var(--fx-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--tinta-3); text-transform: uppercase; }
+.kpi .v {
+  font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em; margin-top: 4px; line-height: 1.1;
+}
+.kpi .v small { font-size: 13px; font-weight: 500; color: var(--tinta-3); margin-left: 4px; letter-spacing: 0; }
+.kpi .ctx { font-size: 12px; color: var(--tinta-2); margin-top: 4px; }
+.kpi .mid { font-family: var(--fx-mono); font-size: 9px; color: var(--tinta-3); letter-spacing: 0.08em; margin-top: 6px; }
+.kpi .v.critico { color: var(--critico); }
+.kpi .v.correcto { color: var(--correcto); }
+.kpi .v.alerta { color: var(--alerta); }
+
+/* Cifra que manda (cockpit 14B) */
+.manda { display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; }
+.manda .cifra {
+  font-size: 76px; font-weight: 600; font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em; line-height: 1; color: var(--critico);
+}
+.manda .quee { max-width: 340px; }
+.manda .quee .t1 { font-size: 17px; font-weight: 600; }
+.manda .quee .t2 { font-size: 13px; color: var(--tinta-2); margin-top: 4px; }
+
+/* ── Tabla maestra: fila 40px, sin cebreado, barra de estado 3px ──────── */
+.twrap { overflow-x: auto; }
+table.maestra { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+table.maestra th {
+  font-family: var(--fx-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-3);
+  text-align: left; padding: 0 12px 10px; border-bottom: 1px solid var(--tinta-3);
+  white-space: nowrap; position: sticky; top: 0; background: var(--plancha);
+}
+table.maestra td {
+  height: 40px; padding: 0 12px; border-bottom: 1px solid var(--filete);
+  white-space: nowrap; vertical-align: middle;
+}
+table.maestra td.n, table.maestra th.n { text-align: right; }
+table.maestra td.code { font-family: var(--fx-mono); font-size: 12px; }
+table.maestra tr.total td {
+  border-bottom: 0; border-top: 1px solid var(--tinta-3);
+  font-weight: 600; font-family: var(--fx-mono); font-size: 12px;
+}
+/* Estado como barra de 3px en el canal izquierdo */
+td.estado { border-left: 3px solid transparent; padding-left: 9px !important; }
+td.estado.critico { border-left-color: var(--critico); }
+td.estado.alerta { border-left-color: var(--alerta); }
+td.estado.correcto { border-left-color: var(--correcto); }
+td.estado.info { border-left-color: var(--info); }
+td.estado.pendiente { border-left-style: dotted; border-left-color: var(--pendiente); }
+
+.sev { font-family: var(--fx-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.sev.critico { color: var(--critico); } .sev.alerta { color: var(--alerta); }
+.sev.correcto { color: var(--correcto); } .sev.info { color: var(--info); }
+.sev.pendiente { color: var(--pendiente); }
+
+/* ── Semáforo-tarea ───────────────────────────────────────────────────── */
+.tarea {
+  display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid var(--filete);
+}
+.tarea:last-child { border-bottom: 0; }
+.tarea .dias { text-align: center; border-right: 1px solid var(--filete); padding-right: 16px; }
+.tarea .dias .n { font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; }
+.tarea .dias .u { font-family: var(--fx-mono); font-size: 9px; letter-spacing: 0.12em; color: var(--tinta-3); }
+.tarea .cuerpo .t { font-weight: 600; font-size: 14px; }
+.tarea .cuerpo .d { font-size: 12.5px; color: var(--tinta-2); margin-top: 2px; }
+.tarea .cuerpo .code { font-family: var(--fx-mono); font-size: 11px; color: var(--tinta-3); margin-top: 2px; }
+.tarea .lado { text-align: right; }
+.tarea .lado .monto { font-weight: 600; font-variant-numeric: tabular-nums; }
+.tarea.critico .dias .n { color: var(--critico); }
+.tarea.alerta .dias .n { color: var(--alerta); }
+
+/* ── Listas de instrumento (aging, dueños, margen) ────────────────────── */
+.instr { display: flex; flex-direction: column; }
+.instr .fila {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 9px 0; border-bottom: 1px solid var(--filete);
+  font-variant-numeric: tabular-nums;
+}
+.instr .fila:last-child { border-bottom: 0; }
+.instr .fila .lab { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.instr .fila .mono { font-family: var(--fx-mono); font-size: 11px; color: var(--tinta-3); }
+.instr .fila .val { font-weight: 600; }
+.instr .fila.total { border-top: 1px solid var(--tinta-3); border-bottom: 0; font-weight: 600; }
+
+/* Acciones numeradas (cinco acciones de la semana) */
+.acciones { counter-reset: acc; display: flex; flex-direction: column; }
+.acciones .acc {
+  display: flex; align-items: baseline; gap: 14px; padding: 11px 0;
+  border-bottom: 1px solid var(--filete);
+}
+.acciones .acc:last-child { border-bottom: 0; }
+.acciones .acc::before {
+  counter-increment: acc; content: counter(acc, decimal-leading-zero);
+  font-family: var(--fx-mono); font-size: 11px; color: var(--tinta-3);
+}
+.acciones .acc .t { flex: 1; }
+.acciones .acc .t .quien { font-size: 12px; color: var(--tinta-2); }
+.acciones .acc .m { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ── Estado vacío: afirmación verificable + acción (Petrona) ──────────── */
+.vacio { padding: 40px 24px; text-align: center; }
+.vacio .t { font-family: var(--fx-petrona); font-size: 21px; color: var(--tinta-1); }
+.vacio .d { font-size: 13px; color: var(--tinta-2); margin-top: 8px; }
+
+/* Botón: uno sólido por pantalla, pill, verbo + objeto */
+.btn {
+  display: inline-block; border-radius: 999px; padding: 9px 20px;
+  font-family: var(--fx-archivo); font-size: 13px; font-weight: 600;
+  background: var(--acento); color: #fff; border: 0; cursor: pointer;
+}
+.btn.sec { background: transparent; color: var(--tinta-2); border: 1px solid var(--filete); }
+
+/* Grids de composición */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.g32 { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; }
+@media (max-width: 1000px) { .g2, .g32 { grid-template-columns: 1fr; } }
+
+.notaf { font-family: var(--fx-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--tinta-3); text-transform: uppercase; }
