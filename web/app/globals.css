@@ -336,3 +336,9 @@ td.estado.pendiente { border-left-style: dotted; border-left-color: var(--pendie
 }
 .vercomo a:hover { text-decoration: none; background: var(--hover); }
 .vercomo a.on { background: var(--acento-suave); color: var(--acento); border-color: var(--acento); font-weight: 600; }
+
+/* Captura F3 */
+.mini { height: 32px; border: 1px solid var(--filete); border-radius: 8px;
+        padding: 0 10px; font: 12px var(--fx-archivo); width: 190px;
+        background: var(--plancha); color: var(--tinta-1); }
+button.btn:disabled { opacity: .5; cursor: wait; }

@@ -101,7 +101,12 @@ export default async function Contratacion() {
         )} la segunda (administración). Los bloqueados no tienen botón de pagar — tienen la acción que los desbloquea: pedir la cuenta de cobro o el soporte de seguridad social. Y quedan ${n0(
           k.pagados_sin_soporte_n
         )} pagos históricos hechos sin soporte: riesgo laboral acumulado que baja solo cuando alguien lo persigue.`}
-        lado={<span className="notaf">M8 · CUMPLIMIENTO {k.cumplimiento_pct ?? "—"} %</span>}
+        lado={
+          <>
+            <span className="notaf">M8 · CUMPLIMIENTO {k.cumplimiento_pct ?? "—"} %</span>
+            <Link className="btn" href="/contratacion/firmas">Ir a la cola de firmas</Link>
+          </>
+        }
       />
 
       <div className="contenido">
