@@ -1,0 +1,31 @@
+# M10 · Calidad de datos — job nocturno (03:00 Bogotá = 08:00 UTC).
+# Requiere el secreto DATABASE_URL; sin él termina sin evaluar.
+# El job FALLA si una regla estructural está en rojo: la degradación se ve en GitHub.
+name: calidad-diaria
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verificar configuración
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "Sin DATABASE_URL en secretos: el job queda inactivo."; exit 0
+          fi
+          echo "activo=si" >> "$GITHUB_ENV"
+      - name: Instalar dependencias
+        if: env.activo == 'si'
+        run: pip install psycopg2-binary
+      - name: Ejecutar reglas de calidad
+        if: env.activo == 'si'
+        run: python tools/calidad.py

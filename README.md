@@ -86,3 +86,21 @@ El front está listo para Vercel (único paso que requiere cuenta):
 voz narrativa (HTML en `out/`). Para automatizarlo, poner los secretos `DATABASE_URL`, `SMTP_*` y
 `DIGEST_TO` en GitHub → Actions y el workflow `digest-diario` lo envía de lunes a viernes.
 Con Google Workspace: `smtp.gmail.com:587` + contraseña de aplicación.
+
+## Núcleo transaccional (F2)
+
+`db/migrations/0003` crea el modelo definitivo: `core` (proyectos con código canónico + alias,
+montos versionados como trío monto·moneda·TRM con COP **generado**), `revenue` (hitos con estados
+por CHECK), `procurement` (contratos y pagos con la regla dura de M8 como CHECK), `budget`,
+`ledger` (**money_event**: el libro único de todo peso que entra o sale), `infra`, `catalog`
+(IHPSC v3.1 completo) y `pii` (RLS: nadie la lee salvo `pii_reader`). `audit.event_log` es
+append-only por trigger.
+
+`tools/migrar_f2.py` puebla todo desde staging aplicando las decisiones de F0 y termina con la
+reconciliación contra las cifras de control (informe en `data-quality/f2_reconciliacion.md`).
+Las métricas v1 sobre el modelo limpio viven en `db/migrations/0004`; `metrics.v1_vs_v0` es la
+prueba de paridad contra las vistas de staging.
+
+**Pendiente de F2 que requiere credenciales:** OIDC contra Google Workspace (crear OAuth Client ID
+en Google Cloud Console → variables `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET`). Hasta entonces el
+front usa Basic Auth interino.
