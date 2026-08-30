@@ -4,15 +4,16 @@ import { usePathname } from "next/navigation";
 
 const ITEMS = [
   { href: "/mi-dia", num: "00", label: "Mi día" },
-  { href: "/", num: "01", label: "Cockpit" },
-  { href: "/proyectos", num: "02", label: "Proyectos" },
-  { href: "/cartera", num: "03", label: "Cartera y cobro" },
-  { href: "/contratacion", num: "04", label: "Contratación" },
-  { href: "/catalogo", num: "05", label: "Catálogo IHPSC" },
-  { href: "/infraestructura", num: "06", label: "Infraestructura" },
-  { href: "/finanzas", num: "07", label: "Finanzas" },
-  { href: "/calidad", num: "08", label: "Calidad de datos" },
-  { href: "/capacidad", num: "09", label: "Capacidad" },
+  { href: "/agenda", num: "01", label: "Agenda" },
+  { href: "/", num: "02", label: "Cockpit" },
+  { href: "/proyectos", num: "03", label: "Proyectos" },
+  { href: "/cartera", num: "04", label: "Cartera y cobro" },
+  { href: "/contratacion", num: "05", label: "Contratación" },
+  { href: "/catalogo", num: "06", label: "Catálogo IHPSC" },
+  { href: "/infraestructura", num: "07", label: "Infraestructura" },
+  { href: "/finanzas", num: "08", label: "Finanzas" },
+  { href: "/calidad", num: "09", label: "Calidad de datos" },
+  { href: "/capacidad", num: "10", label: "Capacidad" },
 ];
 
 export default function Nav({ counts = {} }) {
@@ -28,7 +29,7 @@ export default function Nav({ counts = {} }) {
             <span className="num">{it.num}</span>
             {it.label}
             {c != null && Number(c) > 0 && (
-              <span className={"cnt" + (["/cartera", "/proyectos"].includes(it.href) ? " critico" : "")}>
+              <span className={"cnt" + (["/cartera", "/proyectos", "/agenda"].includes(it.href) ? " critico" : "")}>
                 {c}
               </span>
             )}

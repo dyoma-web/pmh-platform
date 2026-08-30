@@ -359,3 +359,49 @@ button.btn:disabled { opacity: .5; cursor: wait; }
   @page { size: A4 landscape; margin: 12mm; }
 }
 .portal-ext { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }
+
+/* ── Agenda: calendario de compromisos (día / semana / mes / año) ─────── */
+.cal-tool { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--filete); border: 1px solid var(--filete); }
+.cal-head { background: var(--plancha); padding: 6px 8px; font-family: var(--fx-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-3); }
+.cal-cel { background: var(--plancha); min-height: 108px; padding: 6px 8px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cal-cel.otro { background: var(--campo); }
+.cal-cel.finde .d { color: var(--tinta-3); }
+.cal-cel.hoy { box-shadow: inset 0 0 0 2px var(--acento); }
+.cal-cel .d { font-family: var(--fx-mono); font-size: 11px; color: var(--tinta-2); display: flex; justify-content: space-between; margin-bottom: 2px; }
+.cal-cel.hoy .d { color: var(--acento); font-weight: 600; }
+.cal-it { display: block; font-size: 11.5px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--tinta-1); padding-left: 5px; border-left: 2px solid var(--tinta-3); }
+.cal-it:hover { text-decoration: none; background: var(--hover); }
+.cal-it.vencido { border-left-color: var(--critico); color: var(--critico); }
+.cal-it.cumplido { border-left-color: var(--filete); color: var(--tinta-3); }
+.cal-it .m { font-family: var(--fx-mono); font-size: 10px; color: var(--tinta-3); margin-left: 4px; }
+.cal-it.vencido .m { color: var(--critico); }
+.cal-mas { font-family: var(--fx-mono); font-size: 10px; color: var(--acento); letter-spacing: .06em; }
+.cal-semana .cal-cel { min-height: 280px; }
+.cal-semana .cal-it { white-space: normal; padding: 3px 0 3px 5px; border-bottom: 1px solid var(--filete); }
+.cal-anio { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 16px; }
+.cal-mini { border: 1px solid var(--filete); border-radius: 8px; padding: 10px 12px; background: var(--plancha); display: block; color: inherit; }
+.cal-mini:hover { text-decoration: none; background: var(--hover); }
+.cal-mini .t { display: flex; justify-content: space-between; font-family: var(--fx-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-2); margin-bottom: 6px; }
+.cal-mini .g { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-mini .c { aspect-ratio: 1; border-radius: 2px; background: var(--surco); }
+.cal-mini .c.vacio { background: transparent; }
+.cal-mini .c.h1 { background: #c9d3ee; } .cal-mini .c.h2 { background: #9fb1e0; }
+.cal-mini .c.h3 { background: #6e86cc; } .cal-mini .c.h4 { background: var(--tinta-1); }
+.cal-mini .c.v { box-shadow: inset 0 0 0 1.5px var(--critico); }
+.cal-mini .c.hoy { box-shadow: inset 0 0 0 2px var(--acento); }
+.cal-mini .s { margin-top: 8px; font-size: 12px; color: var(--tinta-2); display: flex; justify-content: space-between; }
+@media (max-width: 900px) { .cal-grid { grid-template-columns: repeat(7, minmax(120px, 1fr)); } .plancha:has(.cal-grid) { overflow-x: auto; } }
+
+/* ── Línea de vida ────────────────────────────────────────────────────── */
+.lv-wrap { overflow-x: auto; }
+.lv { width: 100%; min-width: 720px; display: block; }
+.lv .lv-tick { font-family: var(--fx-mono); font-size: 10px; fill: var(--tinta-3); letter-spacing: .06em; }
+.lv .lv-lab { font-family: var(--fx-mono); font-size: 10px; fill: var(--tinta-3); letter-spacing: .1em; }
+.lv-leyenda { font-family: var(--fx-mono); font-size: 10px; color: var(--tinta-3); letter-spacing: .04em; margin-top: 6px; line-height: 1.6; }
+.lv-crono summary { cursor: pointer; font-family: var(--fx-mono); font-size: 11px; color: var(--acento); margin-top: 8px; letter-spacing: .06em; }
+details.contrato-lv { border-top: 1px solid var(--filete); padding: 10px 0; }
+details.contrato-lv > summary { cursor: pointer; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; list-style: none; }
+details.contrato-lv > summary::-webkit-details-marker { display: none; }
+details.contrato-lv > summary::before { content: "▸"; color: var(--tinta-3); font-size: 11px; }
+details.contrato-lv[open] > summary::before { content: "▾"; }

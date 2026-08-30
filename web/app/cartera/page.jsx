@@ -67,7 +67,7 @@ export default async function Cartera() {
   return (
     <>
       <Historia
-        num="03"
+        num="04"
         seccion="Cartera y cobro"
         titulo={top ? `A ${top[0]} hay que cobrarle primero` : "No hay cartera vencida"}
         lede={

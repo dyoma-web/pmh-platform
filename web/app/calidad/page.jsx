@@ -35,7 +35,7 @@ export default async function Calidad() {
   return (
     <>
       <Historia
-        num="08"
+        num="09"
         seccion="Administración · Calidad de datos"
         titulo={
           todoOk

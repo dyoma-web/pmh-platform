@@ -25,7 +25,7 @@ export default async function Infraestructura() {
   return (
     <>
       <Historia
-        num="06"
+        num="07"
         seccion="Infraestructura"
         titulo={
           vencidas > 0

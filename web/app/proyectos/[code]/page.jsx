@@ -6,6 +6,8 @@ import Historia from "../../historia";
 import SelectorActor from "../../contratacion/firmas/selector-actor";
 import ActorBridge from "../../cartera/actor-bridge";
 import Entregables from "./entregables";
+import DocumentosProyecto from "./documentos-proyecto";
+import LineaVida, { CARRILES_PROYECTO, SQL_EVENTOS } from "../../linea-vida";
 
 export const dynamic = "force-dynamic";
 
@@ -86,6 +88,14 @@ export default async function Ficha({ params }) {
      where d.project_id = $1 order by d.due_date`, [p.id]);
   const [ev] = await q(
     "select * from metrics.v2_valor_ganado where project_id = $1", [p.id]);
+  const [eventos, [brecha], fantasmas] = await Promise.all([
+    q(`${SQL_EVENTOS} where project_id = $1 order by orden`, [p.id]),
+    q("select * from metrics.v2_brecha_financiacion where project_id = $1", [p.id]),
+    q(`select a.changes->>'fecha_fin_anterior' fecha, 'Fin anterior ' || a.contract_code || ' · otrosí #' || a.id titulo
+         from procurement.contract_amendment a join procurement.contract k on k.code = a.contract_code
+        where a.state='approved' and a.effect='plazo' and k.project_id = $1`, [p.id]),
+  ]);
+  const evVenc = eventos.filter((e) => e.estado === "vencido");
 
   const hitoIds = hitos.map((h) => String(h.id));
   const contratoCodes = contratos.map((c) => c.code);
@@ -108,7 +118,7 @@ export default async function Ficha({ params }) {
       <div className="historia">
         <div className="eyebrow2">
           <span className="tick" aria-hidden="true" />
-          <span><Link href="/proyectos">02 · PORTAFOLIO</Link> / FICHA</span>
+          <span><Link href="/proyectos">03 · PORTAFOLIO</Link> / FICHA</span>
         </div>
         <div className="fila-titulo">
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
@@ -175,6 +185,25 @@ export default async function Ficha({ params }) {
 
         <section className="plancha">
           <SelectorActor usuarios={usuarios} />
+        </section>
+
+        <section className="plancha">
+          <h2>Línea de vida del proyecto{" "}
+            <span className="mid">
+              {Number(brecha?.brecha_cop) > 0
+                ? `FINANCIANDO ${mcop(brecha.brecha_cop)} M: PAGADO A TERCEROS ANTES DE COBRAR`
+                : evVenc.length ? `${n0(evVenc.length)} EVENTOS VENCIDOS` : "INGRESOS ARRIBA · EGRESOS ABAJO"}
+            </span>
+          </h2>
+          <p style={{ fontSize: 13, color: "var(--tinta-2)", marginTop: 0 }}>
+            {Number(brecha?.brecha_cop) > 0
+              ? `InnovaHub ha pagado ${cop(brecha.pagado_terceros_cop)} a terceros y ha cobrado ${cop(brecha.cobrado_cliente_cop)} del cliente: la diferencia la financia la empresa.`
+              : `Cobrado ${cop(brecha?.cobrado_cliente_cop ?? 0)} del cliente frente a ${cop(brecha?.pagado_terceros_cop ?? 0)} pagados a terceros.`}
+            {" "}Cada evento muestra lo previsto (hueco) y lo ocurrido (sólido); el segmento entre ambos es la desviación.
+          </p>
+          <LineaVida eventos={eventos} carriles={CARRILES_PROYECTO} fantasmas={fantasmas}
+            titulo={`Línea de vida ${p.display_code}`} />
+          <DocumentosProyecto projectCode={p.code} contractUrl={p.contract_url} docsFecha={p.docs_uploaded_at ? fecha(p.docs_uploaded_at) : null} />
         </section>
 
         <section className="plancha">

@@ -8,7 +8,7 @@ import ResolverOtrosi from "./resolver-otrosi";
 
 export const dynamic = "force-dynamic";
 
-const EFECTO = { monto: "Monto", fechas: "Fechas", alcance: "Alcance", anulacion: "Anulación" };
+const EFECTO = { monto: "Monto", fechas: "Fechas", plazo: "Plazo", alcance: "Alcance", anulacion: "Anulación" };
 const EST = { requested: ["En trámite", "info"], approved: ["Aprobado", "correcto"], rejected: ["Rechazado", "pendiente"] };
 
 export default async function Otrosi({ searchParams }) {
@@ -18,7 +18,7 @@ export default async function Otrosi({ searchParams }) {
     select id, full_name, (app_role='admin' or ih_role='Administrative Project Manager') puede_validar
     from core.app_user where active and email is not null order by full_name`);
   const contratos = await q(`
-    select c.code, c.amount, ct.display_name contratista, p.code project_code
+    select c.code, c.amount, to_char(c.end_date,'YYYY-MM-DD') end_date, ct.display_name contratista, p.code project_code
     from procurement.contract c
     join procurement.contractor ct on ct.id = c.contractor_id
     join core.project p on p.id = c.project_id
@@ -37,7 +37,7 @@ export default async function Otrosi({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Otrosí"
         titulo={enTramite > 0 ? `${n0(enTramite)} otrosíes esperan resolución` : "El contrato original nunca se edita"}
         lede="Todo cambio a un contrato es un otrosí con su propio flujo: la gestora lo pide con detalle, administración lo resuelve (nunca la misma persona), y al aprobarse el sistema aplica el cambio dejando la traza — el monto anterior queda escrito, los pagos anulados se marcan, nada se borra."

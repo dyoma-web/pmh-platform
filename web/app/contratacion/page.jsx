@@ -89,7 +89,7 @@ export default async function Contratacion() {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · pagos a terceros"
         titulo={
           Number(k.bloqueados_n) > 0

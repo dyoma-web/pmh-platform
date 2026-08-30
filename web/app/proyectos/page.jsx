@@ -68,7 +68,7 @@ export default async function Proyectos({ searchParams }) {
 
   return (
     <>
-      <Historia num="02" seccion="Proyectos · Portafolio" titulo={titulo} lede={lede}
+      <Historia num="03" seccion="Proyectos · Portafolio" titulo={titulo} lede={lede}
         lado={
           <>
             <Link className="btn sec" href="/proyectos/resumen">Resúmenes</Link>

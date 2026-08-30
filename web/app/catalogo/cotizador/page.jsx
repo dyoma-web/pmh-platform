@@ -31,7 +31,7 @@ export default async function Cotizador() {
   return (
     <>
       <Historia
-        num="05"
+        num="06"
         seccion="Catálogo · Cotizador"
         titulo="El precio deja de ser «lo que nos pareció»"
         lede={`Cada línea sale del catálogo IHPSC con su costo de referencia (${n0(conCosto)} ítems ya lo tienen, de precios reales pagados) y el margen esperado se calcula en vivo. Al ganar una cotización, sus líneas son el borrador natural del presupuesto del proyecto en el wizard de alta.`}

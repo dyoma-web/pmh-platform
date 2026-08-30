@@ -35,6 +35,11 @@ export async function POST(req) {
       if (effect === "monto" && !(Number(changes?.nuevo_monto) > 0)) {
         await client.query("rollback"); return err(422, "Un otrosí de monto necesita el nuevo monto.");
       }
+      if (effect === "plazo") {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(String(changes?.nueva_fecha_fin || ""))) {
+          await client.query("rollback"); return err(422, "Un otrosí de plazo necesita la nueva fecha de fin.");
+        }
+      }
       if (effect === "fechas") {
         const { rows: [p] } = await client.query(
           `select id, adm_validated_at from procurement.contract_payment
@@ -56,7 +61,8 @@ export async function POST(req) {
     if (b.accion === "aprobar" || b.accion === "rechazar") {
       if (!esAdmin) { await client.query("rollback"); return err(403, "Resolver un otrosí es de administración."); }
       const { rows: [a] } = await client.query(
-        `select am.*, c.amount as monto_actual, c.state as contrato_estado
+        `select am.*, c.amount as monto_actual, c.state as contrato_estado,
+                to_char(c.end_date, 'YYYY-MM-DD') as fin_anterior
          from procurement.contract_amendment am
          join procurement.contract c on c.code = am.contract_code
          where am.id = $1 for update of am`, [b.otrosi_id]);
@@ -97,6 +103,16 @@ export async function POST(req) {
            where id=$3 and adm_validated_at is null returning due_date`, [ch.nueva_fecha, actor.id, ch.pago_id]);
         if (!p) { await client.query("rollback"); return err(409, "El pago ya no se puede mover (fue validado)."); }
         aplicado = { pago: ch.pago_id, nueva_fecha: ch.nueva_fecha };
+      } else if (a.effect === "plazo") {
+        // La fecha anterior queda en el otrosí (fantasma en la línea de vida).
+        const { rows: [k] } = await client.query(
+          `update procurement.contract set end_date=$1 where code=$2 returning end_date as fin_nuevo`,
+          [ch.nueva_fecha_fin, a.contract_code]);
+        await client.query(
+          `update procurement.contract_amendment
+           set changes = changes || jsonb_build_object('fecha_fin_anterior', $1::text) where id=$2`,
+          [a.fin_anterior, a.id]);
+        aplicado = { fin_anterior: a.fin_anterior, fin_nuevo: k?.fin_nuevo ?? ch.nueva_fecha_fin };
       } else if (a.effect === "anulacion") {
         await client.query(
           "update procurement.contract set state='annulled' where code=$1", [a.contract_code]);

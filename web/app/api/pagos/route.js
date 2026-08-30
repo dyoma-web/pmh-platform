@@ -82,6 +82,7 @@ export async function POST(req) {
         `update procurement.contract_payment
          set adm_validated_at = current_date, validated_by = $1, dates_approx = false,
              invoice_url = $2, legal_support_url = $3, legacy_exception = false,
+             submitted_at = coalesce(submitted_at, current_date),
              updated_at = now(), updated_by = $1
          where id = $4`, [actor.id, invoice, legal, p.id]);
       await client.query(

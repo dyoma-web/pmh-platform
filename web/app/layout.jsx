@@ -17,6 +17,7 @@ async function contexto() {
       select
         (select max(finished_at) from staging._sync_run) corte,
         (select count(*) from metrics.v2_semaforos) tareas,
+        (select count(*) from metrics.v2_agenda where estado='vencido') agenda,
         (select count(*) from metrics.v2_portafolio where semaforo='critico') proyectos,
         (select count(*) from metrics.v2_cartera_aging) cartera,
         (select count(*) from procurement.contract_payment
@@ -33,6 +34,7 @@ async function contexto() {
 export default async function RootLayout({ children }) {
   const [ctx, trm] = await Promise.all([contexto(), trmHoy()]);
   const counts = {
+    "/agenda": ctx.agenda,
     "/proyectos": ctx.proyectos,
     "/cartera": ctx.cartera,
     "/contratacion": ctx.contratacion,

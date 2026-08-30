@@ -66,7 +66,7 @@ export default async function Firmas({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Firmas"
         titulo={
           actor

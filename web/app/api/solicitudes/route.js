@@ -120,19 +120,33 @@ export async function POST(req) {
       const contrato = `${r.category}_${anio}_${String(seq.n).padStart(3, "0")}`;
       // La imputación presupuestal viaja de la solicitud al contrato; el trigger
       // contrato_respeta_linea impide exceder la línea (0009).
+      // Línea de vida (0018): borrador = creación de la solicitud, emisión = hoy,
+      // línea base del sobrecosto = monto emitido.
       await client.query(
         `insert into procurement.contract
          (code, project_id, contractor_id, hiring_request_code, overseer_id, account_category,
-          org_entity, amount, currency, start_date, end_date, state, annotations, budget_line_id)
-         values ($1,$2,$3,$4,$5,$6,$7,$8,'COP',$9,$10,'active',$11,$12)`,
+          org_entity, amount, currency, start_date, end_date, state, annotations, budget_line_id,
+          drafted_at, issued_at, base_amount)
+         values ($1,$2,$3,$4,$5,$6,$7,$8,'COP',$9,$10,'active',$11,$12,$13,current_date,$8)`,
         [contrato, r.project_id, r.contractor_id, r.code, r.requested_by, b.account_category || null,
          r.payor_org, tot.t, r.start_date || tot.d || hoy(),
-         pagos.at(-1)?.due_date || null, `Generado desde ${r.code}`, r.budget_line_id]);
+         pagos.at(-1)?.due_date || null, `Generado desde ${r.code}`, r.budget_line_id,
+         r.created_at ? new Date(r.created_at).toISOString().slice(0, 10) : null]);
       for (const p of pagos) {
         await client.query(
           `insert into procurement.contract_payment (contract_code, due_date, amount)
            values ($1,$2,$3)`, [contrato, p.due_date, p.amount]);
       }
+      // El plan de entregas nace de las líneas de servicio de la solicitud.
+      await client.query(
+        `insert into procurement.contract_deliverable
+           (contract_code, request_service_id, description, ihpsc_group, due_date, created_by)
+         select $1, s.legacy_id,
+                left(coalesce(nullif(trim(s.deliverable),''), nullif(trim(s.description),''), 'Entregable'), 200),
+                s.ihpsc_group, coalesce(s.due_date, $2::date), $3
+           from procurement.request_service s
+          where s.request_code = $4 and coalesce(s.due_date, $2::date) is not null`,
+        [contrato, pagos.at(-1)?.due_date || null, actor.full_name, r.code]);
       await client.query(
         "update procurement.hiring_request set state='processed' where code=$1", [r.code]);
       await audit("hiring_request", r.code, "solicitud.procesar", { contrato, monto: tot.t });

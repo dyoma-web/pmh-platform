@@ -33,7 +33,7 @@ export default async function Solicitudes({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Solicitudes"
         titulo={
           enTramite.length > 0

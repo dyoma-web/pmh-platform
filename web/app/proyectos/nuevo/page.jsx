@@ -28,7 +28,7 @@ export default async function Nuevo() {
   return (
     <>
       <Historia
-        num="02"
+        num="03"
         seccion="Proyectos · Alta"
         titulo="Sin presupuesto no hay proyecto activo"
         lede="Cinco pasos con validación bloqueante: el costeo se calcula (no se digita), el presupuesto por ítem debe cubrir el 100 % de la implementación y los hitos deben sumar el valor del contrato. Queda en borrador; administración aprueba el presupuesto y activa. Es la regla que evita repetir el «2 de 144»."

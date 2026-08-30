@@ -40,7 +40,7 @@ export default async function Resumen({ searchParams }) {
   return (
     <>
       <Historia
-        num="02"
+        num="03"
         seccion="Proyectos · Resúmenes"
         titulo={
           top

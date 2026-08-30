@@ -18,7 +18,7 @@ export default async function Nueva({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Nueva solicitud"
         titulo="Pide el contratista con el detalle que firma el contrato"
         lede="Los servicios que describas aquí son los entregables del contrato, y el plan de pagos debe sumar exactamente lo mismo que los servicios — el sistema no deja crear una solicitud descuadrada. Al procesarse, el contrato nace amarrado a esta solicitud por llave."

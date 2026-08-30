@@ -21,7 +21,8 @@ export default function FormularioOtrosi({ actorId, contratos, pagosPend }) {
     if (!actorId) { setMsj("Elige arriba quién solicita."); return; }
     setOcupado(true); setMsj(null);
     const changes = efecto === "monto" ? { nuevo_monto: Number(nuevoMonto) }
-      : efecto === "fechas" ? { pago_id: Number(pagoId), nueva_fecha: nuevaFecha } : {};
+      : efecto === "fechas" ? { pago_id: Number(pagoId), nueva_fecha: nuevaFecha }
+      : efecto === "plazo" ? { nueva_fecha_fin: nuevaFecha } : {};
     const r = await fetch("/api/otrosi", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ accion: "solicitar", actor_id: Number(actorId),
@@ -50,12 +51,18 @@ export default function FormularioOtrosi({ actorId, contratos, pagosPend }) {
         <select style={sel} value={efecto} onChange={(e) => setEfecto(e.target.value)}>
           <option value="monto">Cambia el monto</option>
           <option value="fechas">Mueve un pago</option>
+          <option value="plazo">Prorroga el plazo (fecha de fin)</option>
           <option value="alcance">Cambia el alcance</option>
           <option value="anulacion">Anula el contrato</option>
         </select>
         {efecto === "monto" && (
           <input className="mini" type="number" min="1" placeholder={`Nuevo monto${k ? ` (actual $ ${nf.format(k.amount)})` : ""}`}
             style={{ width: 220 }} value={nuevoMonto} onChange={(e) => setNuevoMonto(e.target.value)} />
+        )}
+        {efecto === "plazo" && (
+          <input className="mini" type="date" style={{ width: 160 }}
+            title={k?.end_date ? `Fin actual ${String(k.end_date).slice(0, 10)}` : ""}
+            value={nuevaFecha} onChange={(e) => setNuevaFecha(e.target.value)} />
         )}
         {efecto === "fechas" && (
           <>

@@ -6,6 +6,8 @@ import SelectorActor from "../../firmas/selector-actor";
 import PanelContacto from "../panel-contacto";
 import BotonPortal from "../boton-portal";
 import Acciones360 from "./acciones-360";
+import AccionesContrato from "./acciones-contrato";
+import LineaVida, { CARRILES_CONTRATO, SQL_EVENTOS } from "../../../linea-vida";
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +70,25 @@ export default async function Ficha360({ params, searchParams }) {
      where k.contractor_id = $1 and cp.adm_validated_at is null and cp.cancelled_at is null
      order by cp.due_date limit 8`, [id]);
 
+  // Línea de vida por contrato (0018): eventos, entregas y fantasmas de prórroga
+  const codes = contratos.map((k) => k.code);
+  const [eventos, entregables, fantasmas, firmas] = await Promise.all([
+    q(`${SQL_EVENTOS} where contract_code = any($1) order by orden`, [codes]),
+    q(`select id, contract_code, description, rounds_agreed, rounds_used, delivered_at, approved_at,
+              to_char(due_date,'DD Mon') due, to_char(first_delivered_at,'DD Mon') first_delivered,
+              to_char(approved_at,'DD Mon') approved,
+              (first_delivered_at is null and due_date < current_date) vencido
+         from procurement.contract_deliverable where contract_code = any($1) order by due_date`, [codes]),
+    q(`select contract_code, changes->>'fecha_fin_anterior' fecha, 'Fin anterior · otrosí #' || id titulo
+         from procurement.contract_amendment
+        where state='approved' and effect='plazo' and contract_code = any($1)`, [codes]),
+    q(`select code, signed_internal_at is not null interna, signed_contractor_at is not null contratista,
+              base_amount, amount from procurement.contract where code = any($1)`, [codes]),
+  ]);
+  const porContrato = (arr) => arr.reduce((m, r) => ((m[r.contract_code] ??= []).push(r), m), {});
+  const evK = porContrato(eventos), enK = porContrato(entregables), faK = porContrato(fantasmas);
+  const fiK = Object.fromEntries(firmas.map((f) => [f.code, f]));
+
   const [lbl, sev] = ER[c.relation_state];
   const sinEvaluar = contratos.filter((k) => k.state === "finished" && !k.evaluado);
 
@@ -75,7 +96,7 @@ export default async function Ficha360({ params, searchParams }) {
     <>
       <div className="historia">
         <div className="eyebrow2"><span className="tick" aria-hidden="true" />
-          <span><Link href="/contratacion/contratistas">04 · CONTRATISTAS</Link> / EXPEDIENTE 360</span></div>
+          <span><Link href="/contratacion/contratistas">05 · CONTRATISTAS</Link> / EXPEDIENTE 360</span></div>
         <div className="fila-titulo">
           <div>
             <h1>{c.display_name}</h1>
@@ -213,6 +234,39 @@ export default async function Ficha360({ params, searchParams }) {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section className="plancha">
+          <h2>Línea de vida por contrato{" "}
+            <span className="mid">PREVISTO ▽ · OCURRIDO ▼ · {n0(contratos.length)} CONTRATOS</span></h2>
+          {contratos.length === 0 ? (
+            <div className="vacio"><div className="t">Sin contratos: no hay línea que dibujar.</div></div>
+          ) : contratos.map((k) => {
+            const fi = fiK[k.code] || {};
+            const sobre = Number(fi.amount || 0) - Number(fi.base_amount || 0);
+            return (
+              <details className="contrato-lv" key={k.code} open={k.state === "active"}>
+                <summary>
+                  <span className="code" style={{ fontFamily: "var(--fx-mono)", fontSize: 12 }}>{k.code}</span>
+                  <span>{k.display_code}</span>
+                  <span className={"sev " + (k.state === "active" ? "correcto" : k.state === "annulled" ? "pendiente" : "info")}>
+                    {k.state === "active" ? "activo" : k.state === "annulled" ? "anulado" : "terminado"}</span>
+                  <span className="mono" style={{ fontFamily: "var(--fx-mono)", fontSize: 11, color: "var(--tinta-3)" }}>
+                    {fecha(k.start_date)} → {fecha(k.end_date)} · {cop(k.amount)}
+                    {sobre > 0 ? ` · sobrecosto ${cop(sobre)} (${n1((100 * sobre) / Number(fi.base_amount))} %)` : ""}
+                    {(enK[k.code] || []).length ? ` · ${(enK[k.code] || []).length} entregas planeadas` : ""}
+                  </span>
+                </summary>
+                <div style={{ paddingTop: 10 }}>
+                  <LineaVida eventos={evK[k.code] || []} carriles={CARRILES_CONTRATO}
+                    fantasmas={faK[k.code] || []} titulo={`Línea de vida ${k.code}`} />
+                  <AccionesContrato contrato={k.code} activo={k.state === "active"}
+                    firmas={{ interna: fi.interna, contratista: fi.contratista }}
+                    entregables={enK[k.code] || []} />
+                </div>
+              </details>
+            );
+          })}
         </section>
 
         <div className="g2">

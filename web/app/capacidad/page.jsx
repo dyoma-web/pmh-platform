@@ -33,7 +33,7 @@ export default async function Capacidad() {
   return (
     <>
       <Historia
-        num="09"
+        num="10"
         seccion="Capacidad del equipo"
         titulo={
           sinDatos

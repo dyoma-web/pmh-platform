@@ -30,7 +30,7 @@ export default async function Contratistas({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Contratistas"
         titulo={
           top

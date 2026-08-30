@@ -37,7 +37,7 @@ export default async function Cockpit() {
   return (
     <>
       <Historia
-        num="01"
+        num="02"
         seccion="Cockpit"
         titulo={`$ ${mcop(k.cartera_vencida_cop)} M vencidos ordenan la semana`}
         lede={`Es el ${n1(pctVencida)} % de la cartera pendiente, en ${n0(

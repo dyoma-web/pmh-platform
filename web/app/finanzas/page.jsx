@@ -63,7 +63,7 @@ export default async function Finanzas() {
   return (
     <>
       <Historia
-        num="07"
+        num="08"
         seccion="Finanzas · Ledger"
         titulo={`${n0(abiertos)} meses abiertos esperan su sello`}
         lede={`El libro único registra ${n0(monedas.reduce((s, m) => s + Number(m.n), 0))} eventos. Un mes sellado es inmutable — el motor rechaza cualquier cambio dentro de él; los ajustes van como eventos nuevos. La conciliación empareja lo contable con los pagos reales, y el prorrateo del gasto compartido es una regla con pesos, no una captura de pantalla.`}

@@ -64,7 +64,7 @@ export default async function Comparador({ searchParams }) {
   return (
     <>
       <Historia
-        num="04"
+        num="05"
         seccion="Contratación · Comparador"
         titulo={
           multiUnidad

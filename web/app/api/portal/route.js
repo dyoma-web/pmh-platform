@@ -43,8 +43,11 @@ export async function POST(req) {
       return err(422, e.message);
     }
     const campo = tipo === "cuenta" ? "invoice_url" : "legal_support_url";
+    // La primera cuenta de cobro fija la fecha de envío (línea de vida, 0018).
     await pool.query(
-      `update procurement.contract_payment set ${campo}=$1, updated_at=now() where id=$2`,
+      `update procurement.contract_payment set ${campo}=$1, updated_at=now()
+         ${tipo === "cuenta" ? ", submitted_at = coalesce(submitted_at, current_date)" : ""}
+       where id=$2`,
       [doc.url, pagoId]);
     await pool.query(
       `insert into audit.event_log (actor, entity, entity_id, action, after)
