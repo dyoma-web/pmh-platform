@@ -39,7 +39,12 @@ export default async function Proyectos({ searchParams }) {
   return (
     <>
       <Historia num="02" seccion="Proyectos · Portafolio" titulo={titulo} lede={lede}
-        lado={<span className="notaf">{n0(filas.length)} FILAS · FUENTE TRANSACCIONAL</span>} />
+        lado={
+          <>
+            <span className="notaf">{n0(filas.length)} FILAS · FUENTE TRANSACCIONAL</span>
+            <Link className="btn" href="/proyectos/nuevo">Nuevo proyecto</Link>
+          </>
+        } />
 
       <div className="contenido">
         <section className="plancha">

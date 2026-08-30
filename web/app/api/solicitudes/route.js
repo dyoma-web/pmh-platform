@@ -56,16 +56,26 @@ export async function POST(req) {
         await client.query("rollback");
         return err(422, `El plan de pagos ($ ${totalPagos.toLocaleString("es-CO")}) debe sumar lo mismo que los servicios ($ ${totalServicios.toLocaleString("es-CO")}).`);
       }
+      let budgetLine = null;
+      if (b.budget_line_id) {
+        const { rows: [bl] } = await client.query(
+          `select l.id from budget.line l join budget.version v on v.id = l.version_id
+           where l.id = $1 and v.project_id = $2 and v.state = 'approved'`,
+          [b.budget_line_id, proy.id]);
+        if (!bl) { await client.query("rollback"); return err(422, "La línea presupuestal no pertenece al presupuesto aprobado de este proyecto."); }
+        budgetLine = bl.id;
+      }
       const { rows: [seq] } = await client.query(
         `select coalesce(max(substring(code from 'GAP-HR-(\\d+)')::int), 0) + 1 n
          from procurement.hiring_request`);
       const code = `GAP-HR-${String(seq.n).padStart(4, "0")}`;
       await client.query(
         `insert into procurement.hiring_request
-         (code, project_id, contractor_id, requested_by, ih_capacity, payor_org, category, state, start_date, annotations)
-         values ($1,$2,$3,$4,$5,$6,$7,'requested',$8,$9)`,
+         (code, project_id, contractor_id, requested_by, ih_capacity, payor_org, category, state, start_date, annotations, budget_line_id)
+         values ($1,$2,$3,$4,$5,$6,$7,'requested',$8,$9,$10)`,
         [code, proy.id, contractor_id, actor.id, b.ih_capacity === true,
-         payor || "InnovaHub Colombia SAS", category, b.start_date || hoy(), annotations || null]);
+         payor || "InnovaHub Colombia SAS", category, b.start_date || hoy(), annotations || null,
+         budgetLine]);
       for (let i = 0; i < servicios.length; i++) {
         const s = servicios[i];
         await client.query(
@@ -108,14 +118,16 @@ export async function POST(req) {
         `select coalesce(max(substring(code from '_(\\d+)$')::int), 0) + 1 n
          from procurement.contract where code like $1`, [`${r.category}_${anio}_%`]);
       const contrato = `${r.category}_${anio}_${String(seq.n).padStart(3, "0")}`;
+      // La imputación presupuestal viaja de la solicitud al contrato; el trigger
+      // contrato_respeta_linea impide exceder la línea (0009).
       await client.query(
         `insert into procurement.contract
          (code, project_id, contractor_id, hiring_request_code, overseer_id, account_category,
-          org_entity, amount, currency, start_date, end_date, state, annotations)
-         values ($1,$2,$3,$4,$5,$6,$7,$8,'COP',$9,$10,'active',$11)`,
+          org_entity, amount, currency, start_date, end_date, state, annotations, budget_line_id)
+         values ($1,$2,$3,$4,$5,$6,$7,$8,'COP',$9,$10,'active',$11,$12)`,
         [contrato, r.project_id, r.contractor_id, r.code, r.requested_by, b.account_category || null,
          r.payor_org, tot.t, r.start_date || tot.d || hoy(),
-         pagos.at(-1)?.due_date || null, `Generado desde ${r.code}`]);
+         pagos.at(-1)?.due_date || null, `Generado desde ${r.code}`, r.budget_line_id]);
       for (const p of pagos) {
         await client.query(
           `insert into procurement.contract_payment (contract_code, due_date, amount)
@@ -152,6 +164,9 @@ export async function POST(req) {
     return err(400, `Acción desconocida: ${b.accion}`);
   } catch (e) {
     await client.query("rollback");
+    if (e.message?.includes("línea presupuestal")) {
+      return err(409, e.message.split("\n")[0]); // regla de presupuesto del motor, en limpio
+    }
     return err(500, "La base de datos rechazó la operación: " + e.message);
   } finally {
     client.release();
