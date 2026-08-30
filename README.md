@@ -5,8 +5,9 @@ internacional: costeo, presupuesto, ingresos y cartera, contratación de tercero
 conciliación contable y capa de decisión. Sucesor del sistema PMH actual (AppSheet sobre Google
 Sheets).
 
-> **Repositorio privado.** Contiene documentación de negocio interna. No hacer público ni compartir
-> fuera del equipo del proyecto.
+> **Repositorio público** (decisión de dirección, ago 2026). Contiene documentación de negocio y
+> reportes de calidad de datos agregados; nunca datos personales, soportes ni credenciales (ver
+> `.gitignore`). La plataforma se llama **Koleto**; el código conserva el nombre de trabajo `pmh`.
 
 ## Estado
 
