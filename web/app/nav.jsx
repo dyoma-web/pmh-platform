@@ -10,6 +10,7 @@ const ITEMS = [
   { href: "/contratacion", num: "04", label: "Contratación" },
   { href: "/catalogo", num: "05", label: "Catálogo IHPSC" },
   { href: "/infraestructura", num: "06", label: "Infraestructura" },
+  { href: "/finanzas", num: "07", label: "Finanzas" },
   { href: "/calidad", num: "08", label: "Calidad de datos" },
 ];
 
