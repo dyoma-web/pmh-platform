@@ -345,3 +345,16 @@ button.btn:disabled { opacity: .5; cursor: wait; }
 .panelmini { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end;
              align-items: center; padding: 8px; border: 1px solid var(--filete);
              border-radius: 8px; background: var(--campo); }
+
+/* ── PDF del comité (§15): una página, B/N-safe ───────────────────────── */
+.comite { max-width: 1060px; margin: 0 auto; padding: 8px 32px 40px; }
+.comite .kpi .v { font-size: 26px; }
+@media print {
+  .rail, .topglobal, .no-print { display: none !important; }
+  .lienzo { display: block; }
+  body { background: #fff; font-size: 12px; }
+  .comite { padding: 0; max-width: none; }
+  .plancha { box-shadow: none; border: 1px solid #888; }
+  a { color: inherit; }
+  @page { size: A4 landscape; margin: 12mm; }
+}

@@ -53,16 +53,16 @@ def main():
     conn = psycopg2.connect(os.environ["DATABASE_URL"])
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
 
-    cur.execute("select * from metrics.v0_kpis")
+    cur.execute("select * from metrics.v2_kpis")
     k = cur.fetchone()
-    cur.execute("""select * from metrics.v0_semaforos
+    cur.execute("""select * from metrics.v2_semaforos
         where regla in ('hito_vencido','pago_contratista_vencido')
         order by monto_cop desc nulls last""")
     cola = [t for t in cur.fetchall()
             if not args.quien or responsable(t["dueno"]) == args.quien][:6]
-    cur.execute("select * from metrics.v0_proximos_7d")
+    cur.execute("select * from metrics.v2_proximos_7d")
     prox = cur.fetchall()[:6]
-    cur.execute("select * from metrics.v0_semaforos_dueno limit 5")
+    cur.execute("select * from metrics.v2_semaforos_dueno limit 5")
     duenos = cur.fetchall()
 
     n = len(cola)

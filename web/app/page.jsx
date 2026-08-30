@@ -6,18 +6,18 @@ import Historia from "./historia";
 export const dynamic = "force-dynamic";
 
 export default async function Cockpit() {
-  const [k] = await q("select * from metrics.v0_kpis");
-  const caja = await q("select * from metrics.v0_caja_13s");
+  const [k] = await q("select * from metrics.v2_kpis");
+  const caja = await q("select * from metrics.v2_caja_13s");
   const [topCliente] = await q(`
     select cliente, sum(monto_cop) m, count(*) n
-    from metrics.v0_cartera_resumen group by cliente order by m desc limit 1`);
-  const acciones = await q("select * from metrics.v0_acciones");
-  const duenos = await q("select * from metrics.v0_semaforos_dueno limit 6");
-  const margen = await q("select * from metrics.v0_margen_linea");
+    from metrics.v2_cartera_resumen group by cliente order by m desc limit 1`);
+  const acciones = await q("select * from metrics.v2_acciones");
+  const duenos = await q("select * from metrics.v2_semaforos_dueno limit 6");
+  const margen = await q("select * from metrics.v1_margen_linea");
   const aging = await q(`
-    select cliente, tramo, sum(monto_cop) m from metrics.v0_cartera_resumen
+    select cliente, tramo, sum(monto_cop) m from metrics.v2_cartera_resumen
     group by cliente, tramo`);
-  const dso = await q("select * from metrics.v0_dso_cliente order by monto_cop desc");
+  const dso = await q("select * from metrics.v2_dso_cliente order by monto_cop desc");
 
   const pctVencida = k.cartera_pendiente_cop
     ? (100 * k.cartera_vencida_cop) / k.cartera_pendiente_cop
@@ -43,7 +43,7 @@ export default async function Cockpit() {
         lede={`Es el ${n1(pctVencida)} % de la cartera pendiente, en ${n0(
           k.hitos_vencidos
         )} hitos — y ${mcop(topCliente?.m)} M son de ${topCliente?.cliente}: la primera llamada del lunes ya tiene nombre. Debajo, el instrumento completo; si algún control no reconcilia, Calidad de datos lo dice antes de que lo descubras aquí.`}
-        lado={<span className="notaf">VISTA v0 · M5</span>}
+        lado={<><span className="notaf">VISTA v2 · LEDGER</span><a className="btn" href="/comite">PDF del comité</a></>}
       />
 
       <div className="contenido">

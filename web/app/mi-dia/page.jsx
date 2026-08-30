@@ -14,28 +14,28 @@ const TIPO7 = {
 
 // Cada regla termina en un verbo y en el lugar donde hoy se resuelve.
 const ACCION = {
-  hito_vencido: { verbo: "Registrar gestión de cobro", href: (t) => `/cartera` },
-  pago_contratista_vencido: { verbo: "Validar pago", href: () => "/contratacion" },
-  pago_sin_soporte_legal: { verbo: "Solicitar soporte", href: () => "/contratacion" },
+  hito_vencido: { verbo: "Registrar gestión de cobro", href: () => `/cartera` },
+  pago_contratista_vencido: { verbo: "Validar pago", href: () => "/contratacion/firmas" },
+  pago_bloqueado_documentos: { verbo: "Completar documentos", href: () => "/contratacion/firmas" },
+  pago_sin_soporte_legal: { verbo: "Solicitar soporte", href: () => "/contratacion/firmas" },
   proyecto_activo_cierre_vencido: {
     verbo: "Prorrogar o cerrar",
     href: (t) => `/proyectos/${encodeURIComponent(t.project_code)}`,
   },
+  contrato_por_vencer: {
+    verbo: "Prorrogar o liquidar",
+    href: (t) => `/proyectos/${encodeURIComponent(t.project_code)}`,
+  },
   infra_on_vencida: { verbo: "Renovar o apagar", href: () => "/infraestructura" },
 };
-const TITULO = {
-  hito_vencido: (t) => `Hito vencido hace ${t.dias} días`,
-  pago_contratista_vencido: (t) => `Pago a contratista vencido hace ${t.dias} días`,
-  pago_sin_soporte_legal: () => "Pago hecho sin soporte legal",
-  proyecto_activo_cierre_vencido: (t) => `Proyecto activo con cierre vencido hace ${t.dias} días`,
-  infra_on_vencida: (t) => `Infraestructura encendida, vencida hace ${t.dias} días`,
-};
-const SEV = {
-  hito_vencido: "critico",
-  pago_contratista_vencido: "critico",
-  pago_sin_soporte_legal: "alerta",
-  proyecto_activo_cierre_vencido: "alerta",
-  infra_on_vencida: "pendiente",
+const RESUMEN = {
+  hito_vencido: "Hitos de cobro vencidos",
+  pago_contratista_vencido: "Pagos a contratistas vencidos",
+  pago_bloqueado_documentos: "Pagos bloqueados por documentos",
+  pago_sin_soporte_legal: "Pagos legados sin soporte legal — riesgo laboral acumulado",
+  proyecto_activo_cierre_vencido: "Proyectos activos con cierre vencido — prórroga o cierre, no hay tercera opción",
+  contrato_por_vencer: "Contratos que vencen en 30 días",
+  infra_on_vencida: "Infraestructura encendida y vencida",
 };
 
 function responsable(dueno) {
@@ -48,22 +48,14 @@ export default async function MiDia({ searchParams }) {
   const quien = (sp?.quien || "").trim();
 
   const todos = await q(`
-    select * from metrics.v0_semaforos
-    order by case regla when 'hito_vencido' then 1 when 'pago_contratista_vencido' then 2
-      when 'proyecto_activo_cierre_vencido' then 3 when 'pago_sin_soporte_legal' then 4
-      else 5 end, monto_cop desc nulls last, dias desc nulls last`);
-  const proximos = await q("select * from metrics.v0_proximos_7d");
+    select * from metrics.v2_semaforos
+    order by case severidad when 'critico' then 1 when 'alerta' then 2 else 3 end,
+      monto_cop desc nulls last, dias desc nulls last`);
+  const proximos = await q("select * from metrics.v2_proximos_7d");
   const movimientos = await q(`
-    (select 'cobro' tipo, 'Se acreditó ' || to_char(expected_cop,'FM999G999G999G999') || ' COP de ' || project_code detalle,
-            credited_date::date f, project_code ref
-       from staging.income where status='Credited' and credited_date is not null
-         and credited_date >= '2022-01-01' order by credited_date desc limit 4)
-    union all
-    (select 'pago', 'Pago validado por ' || to_char(payment_amount,'FM999G999G999G999') || ' COP · ' || contract_code,
-            payment_date::date, contract_code
-       from staging.contract_payments where adm_validation='Paid' and payment_date::date <= current_date
-       order by payment_date desc limit 3)
-    order by f desc limit 7`);
+    select actor, entity, entity_id, action, at::date f
+    from audit.event_log
+    where action not like 'prueba%' order by at desc limit 7`);
 
   const personas = [...new Set(todos.map((t) => responsable(t.dueno)))]
     .filter((p) => p && p !== "Administración" && p !== "Infraestructura")
@@ -137,7 +129,7 @@ export default async function MiDia({ searchParams }) {
             </div>
           ) : (
             hero.map((t, i) => {
-              const sev = SEV[t.regla];
+              const sev = t.severidad;
               const acc = ACCION[t.regla];
               return (
                 <div className={"tarea " + sev} key={i}>
@@ -146,7 +138,7 @@ export default async function MiDia({ searchParams }) {
                     <div className="u">DÍAS</div>
                   </div>
                   <div className="cuerpo">
-                    <div className="t">{TITULO[t.regla](t)}</div>
+                    <div className="t">{t.detalle}</div>
                     <div className="code">
                       <Link href={`/proyectos/${encodeURIComponent(t.project_code)}`}>{t.project_code}</Link>
                       {"  "}· {cop(t.monto_cop)}
@@ -170,9 +162,7 @@ export default async function MiDia({ searchParams }) {
               {resumen.map(([regla, r]) => (
                 <div className="fila" key={regla}>
                   <span className="lab">
-                    {TITULO[regla] ? TITULO[regla]({ dias: "—" }).replace(" hace — días", "s") : regla}
-                    {regla === "pago_sin_soporte_legal" && " — riesgo laboral acumulado, no urgencia de caja"}
-                    {regla === "proyecto_activo_cierre_vencido" && " — cada uno exige prórroga o cierre, no hay tercera opción"}
+                    {RESUMEN[regla] ?? regla}
                   </span>
                   <span className="mono">{r.monto ? mcop(r.monto) + " M" : "—"}</span>
                   <span className="val">{n0(r.n)}</span>
@@ -205,12 +195,13 @@ export default async function MiDia({ searchParams }) {
           </section>
 
           <section className="plancha">
-            <h2>Últimos movimientos <span className="mid">DEL DATO REAL · NO HAY EVENT LOG AÚN</span></h2>
+            <h2>Últimos movimientos <span className="mid">AUDIT.EVENT_LOG · APPEND-ONLY</span></h2>
             <div className="feed">
               {movimientos.map((m, i) => (
-                <div className={"mov " + (m.tipo === "cobro" ? "correcto" : "info")} key={i}>
-                  <div className="t">{m.detalle}</div>
-                  <div className="m">{fecha(m.f).toUpperCase()} · {m.ref}</div>
+                <div className={"mov " + (m.action.includes("acreditar") || m.action.includes("validar") ? "correcto"
+                  : m.action.includes("crear") || m.action.includes("aprobar") ? "info" : "pendiente")} key={i}>
+                  <div className="t">{m.actor} · {m.action.replace(".", " → ")}</div>
+                  <div className="m">{fecha(m.f).toUpperCase()} · {m.entity} {m.entity_id}</div>
                 </div>
               ))}
             </div>

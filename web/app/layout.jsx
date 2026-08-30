@@ -16,13 +16,14 @@ async function contexto() {
     const [r] = await q(`
       select
         (select max(finished_at) from staging._sync_run) corte,
-        (select count(*) from metrics.v0_semaforos) tareas,
+        (select count(*) from metrics.v2_semaforos) tareas,
         (select count(*) from metrics.v2_portafolio where semaforo='critico') proyectos,
-        (select count(*) from metrics.v0_cartera_aging) cartera,
-        (select count(*) from staging.contract_payments
-          where adm_validation<>'Paid' and (contractor_invoice is null or contractor_legal is null)) contratacion,
-        (select count(*) from staging.infra_items
-          where status='ON' and end_date::date<current_date) infraestructura`);
+        (select count(*) from metrics.v2_cartera_aging) cartera,
+        (select count(*) from procurement.contract_payment
+          where adm_validated_at is null and cancelled_at is null
+            and (invoice_url is null or legal_support_url is null)) contratacion,
+        (select count(*) from infra.item
+          where status='on' and end_date<current_date) infraestructura`);
     return r;
   } catch {
     return {};
