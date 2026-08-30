@@ -106,6 +106,7 @@ export default async function Contratacion() {
             <span className="notaf">M8 · CUMPLIMIENTO {k.cumplimiento_pct ?? "—"} %</span>
             <Link className="btn" href="/contratacion/firmas">Cola de firmas</Link>
             <Link className="btn sec" href="/contratacion/solicitudes">Solicitudes</Link>
+            <Link className="btn sec" href="/contratacion/otrosi">Otrosí</Link>
             <Link className="btn sec" href="/contratacion/contratistas">Contratistas</Link>
           </>
         }

@@ -1,6 +1,34 @@
 "use client";
 import { useState } from "react";
 
+// Sube al almacén propio (/api/archivos: dedup por hash, URL firmada) o acepta un enlace.
+function Subidor({ etiqueta, valor, onUrl, origen }) {
+  const [subiendo, setSubiendo] = useState(false);
+  async function archivo(e) {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    setSubiendo(true);
+    const fd = new FormData();
+    fd.append("file", f);
+    fd.append("origen", origen);
+    const r = await fetch("/api/archivos", { method: "POST", body: fd });
+    const j = await r.json().catch(() => ({}));
+    setSubiendo(false);
+    if (r.ok) onUrl(j.url);
+    else alert(j.error || "No se pudo subir el archivo.");
+  }
+  return (
+    <span style={{ display: "inline-flex", gap: 4, alignItems: "center" }}>
+      <input value={valor} onChange={(e) => onUrl(e.target.value)}
+        placeholder={`URL ${etiqueta}`} className="mini" style={{ width: 160 }} />
+      <label className="btn sec" style={{ padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>
+        {subiendo ? "subiendo…" : "subir"}
+        <input type="file" hidden onChange={archivo} disabled={subiendo} />
+      </label>
+    </span>
+  );
+}
+
 // Formulario de firma por pago. El actor se elige arriba (pre-OIDC) y llega por prop.
 export default function AccionesPago({ pago, actorId, modo }) {
   const [msj, setMsj] = useState(null);
@@ -39,10 +67,8 @@ export default function AccionesPago({ pago, actorId, modo }) {
     <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}>
       {modo === "validar" && (
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
-          <input value={invoice} onChange={(e) => setInvoice(e.target.value)}
-            placeholder="URL cuenta de cobro" className="mini" />
-          <input value={legal} onChange={(e) => setLegal(e.target.value)}
-            placeholder="URL soporte seguridad social" className="mini" />
+          <Subidor etiqueta="cuenta de cobro" valor={invoice} onUrl={setInvoice} origen="cuenta_cobro" />
+          <Subidor etiqueta="soporte seg. social" valor={legal} onUrl={setLegal} origen="soporte_legal" />
         </div>
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
