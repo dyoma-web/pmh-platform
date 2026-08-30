@@ -85,6 +85,93 @@ export async function POST(req) {
       return NextResponse.json({ ok: true });
     }
 
+    // ── E1 · evaluación del servicio (interna: el portal jamás la consulta) ──
+    if (b.accion === "review_crear") {
+      const { contract_code, q_calidad, q_fechas, q_comunicacion, q_autonomia,
+        rondas_ajustes, desviacion_dias, hecho } = b;
+      const notas = [q_calidad, q_fechas, q_comunicacion, q_autonomia].map(Number);
+      if (notas.some((x) => !(x >= 1 && x <= 5))) {
+        await client.query("rollback"); return err(422, "Los cuatro criterios van de 1 a 5.");
+      }
+      if (!hecho?.trim()) {
+        await client.query("rollback");
+        return err(422, "La evaluación exige un hecho verificable — escribe qué pasó, no qué opinas: el contratista podría llegar a leerla.");
+      }
+      const { rows: [k] } = await client.query(
+        "select contractor_id, state from procurement.contract where code=$1", [contract_code]);
+      if (!k) { await client.query("rollback"); return err(404, "El contrato no existe."); }
+      const { rows: [dup] } = await client.query(
+        "select 1 from procurement.contractor_review where contract_code=$1", [contract_code]);
+      if (dup) { await client.query("rollback"); return err(409, "Ese contrato ya fue evaluado — la evaluación es una por contrato y no se reescribe."); }
+      await client.query(
+        `insert into procurement.contractor_review
+         (contract_code, contractor_id, q_calidad, q_fechas, q_comunicacion, q_autonomia,
+          rondas_ajustes, desviacion_dias, hecho, autor_id)
+         values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+        [contract_code, k.contractor_id, ...notas,
+         rondas_ajustes ?? null, desviacion_dias ?? null, hecho.trim(), actor.id]);
+      await audit(k.contractor_id, "contratista.evaluar",
+        { contrato: contract_code, promedio: notas.reduce((a, x) => a + x) / 4 });
+      await client.query("commit");
+      return NextResponse.json({ ok: true });
+    }
+
+    if (b.accion === "documento_agregar") {
+      const { tipo, url, periodo } = b;
+      const TIPOS = ["rut", "cert_bancaria", "autorizacion_1581", "seguridad_social", "certificacion"];
+      if (!TIPOS.includes(tipo) || !url?.trim()) {
+        await client.query("rollback"); return err(422, `Tipo (${TIPOS.join(", ")}) y URL son obligatorios.`);
+      }
+      let vigente = null;
+      if (tipo === "seguridad_social") {
+        if (!periodo) { await client.query("rollback"); return err(422, "La seguridad social exige el periodo (mes)."); }
+        const [y, m] = String(periodo).split("-").map(Number); // sin Date(): evita el corrimiento de zona horaria
+        vigente = new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10); // último día del mes
+      } else if (tipo === "rut") {
+        const anio = periodo ? Number(String(periodo).slice(0, 4)) : new Date().getFullYear();
+        vigente = `${anio}-12-31`;
+      }
+      await client.query(
+        `insert into procurement.contractor_document
+         (contractor_id, tipo, periodo, vigente_hasta, url, subido_por)
+         values ($1,$2,$3,$4,$5,$6)`,
+        [b.contratista_id, tipo, periodo ? (String(periodo).length === 7 ? periodo + "-01" : periodo) : null,
+         vigente, url.trim(), actor.full_name]);
+      await audit(b.contratista_id, "contratista.documento", { tipo, periodo, vigente_hasta: vigente });
+      await client.query("commit");
+      return NextResponse.json({ ok: true, vigente_hasta: vigente });
+    }
+
+    if (b.accion === "nota_crear") {
+      if (!b.nota?.trim()) { await client.query("rollback"); return err(422, "La nota no puede estar vacía."); }
+      await client.query(
+        "insert into procurement.contractor_note (contractor_id, nota, autor_id) values ($1,$2,$3)",
+        [b.contratista_id, b.nota.trim(), actor.id]);
+      await audit(b.contratista_id, "contratista.nota", {});
+      await client.query("commit");
+      return NextResponse.json({ ok: true });
+    }
+
+    if (b.accion === "estado_relacion") {
+      if (!esAdmin) { await client.query("rollback"); return err(403, "Cambiar el estado de la relación es de administración."); }
+      const ESTADOS = ["en_vinculacion", "activo", "inactivo", "no_elegible"];
+      if (!ESTADOS.includes(b.estado)) { await client.query("rollback"); return err(422, "Estado inválido."); }
+      if (b.estado === "no_elegible" && !b.motivo?.trim()) {
+        await client.query("rollback");
+        return err(422, "«No elegible» exige motivo: la memoria de por qué no se vuelve a contratar no puede vivir en cabezas.");
+      }
+      await client.query(
+        "update procurement.contractor set relation_state=$1 where id=$2", [b.estado, b.contratista_id]);
+      if (b.motivo?.trim()) {
+        await client.query(
+          "insert into procurement.contractor_note (contractor_id, nota, autor_id) values ($1,$2,$3)",
+          [b.contratista_id, `[${b.estado.toUpperCase()}] ${b.motivo.trim()}`, actor.id]);
+      }
+      await audit(b.contratista_id, "contratista.estado", { estado: b.estado });
+      await client.query("commit");
+      return NextResponse.json({ ok: true });
+    }
+
     await client.query("rollback");
     return err(400, `Acción desconocida: ${b.accion}`);
   } catch (e) {
