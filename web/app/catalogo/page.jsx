@@ -20,7 +20,7 @@ export default async function Catalogo() {
         seccion="Catálogo IHPSC"
         titulo={`El catálogo ya sabe cuánto cuesta el ${n0(pct)} % de lo que vendes`}
         lede={`Cada costo de referencia sale de la mediana de lo que InnovaHub pagó de verdad en 2026 — no de una estimación. Con esto, la próxima cotización deja de ser «lo que nos pareció»: es un precio con evidencia. El taller de tarifas (issue #10) convierte lo provisional en validado.`}
-        lado={<span className="notaf">M11 · UMBRAL 80 % DEL MONTO VENDIDO</span>}
+        lado={<><span className="notaf">M11 · UMBRAL 80 %</span><a className="btn" href="/catalogo/cotizador">Cotizador</a></>}
       />
 
       <div className="contenido">

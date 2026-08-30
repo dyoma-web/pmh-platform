@@ -358,3 +358,4 @@ button.btn:disabled { opacity: .5; cursor: wait; }
   a { color: inherit; }
   @page { size: A4 landscape; margin: 12mm; }
 }
+.portal-ext { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }

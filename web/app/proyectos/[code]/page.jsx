@@ -5,6 +5,7 @@ import { slug } from "../../../lib/slug";
 import Historia from "../../historia";
 import SelectorActor from "../../contratacion/firmas/selector-actor";
 import ActorBridge from "../../cartera/actor-bridge";
+import Entregables from "./entregables";
 
 export const dynamic = "force-dynamic";
 
@@ -78,6 +79,13 @@ export default async function Ficha({ params }) {
     `select concept, provider, resource, status, end_date,
             (status='on' and end_date < current_date) vencida
      from infra.item where project_id = $1 order by vencida desc, end_date`, [p.id]);
+  const entregables = await q(
+    `select d.id, d.description, d.due_date, d.planned_value_cop, d.progress_pct,
+            to_char(d.due_date,'DD Mon') due, u.full_name responsable
+     from core.deliverable d left join core.app_user u on u.id = d.responsible_id
+     where d.project_id = $1 order by d.due_date`, [p.id]);
+  const [ev] = await q(
+    "select * from metrics.v2_valor_ganado where project_id = $1", [p.id]);
 
   const hitoIds = hitos.map((h) => String(h.id));
   const contratoCodes = contratos.map((c) => c.code);
@@ -256,6 +264,26 @@ export default async function Ficha({ params }) {
             )}
           </section>
         </div>
+
+        <section className="plancha">
+          <h2>
+            Entregables y valor ganado{" "}
+            <span className="mid">
+              {ev?.cpi != null
+                ? `CPI ${n1(ev.cpi)} · SPI ${n1(ev.spi ?? 0)} · ${n0(ev.completados)}/${n0(ev.entregables)} COMPLETADOS`
+                : "AVANCE FÍSICO → CPI/SPI"}
+            </span>
+          </h2>
+          {ev?.cpi != null && (
+            <p style={{ fontSize: 13, color: "var(--tinta-2)", marginTop: 0 }}>
+              {Number(ev.cpi) < 1
+                ? `Cada peso gastado está produciendo $ ${n1(Number(ev.cpi))} de valor: el proyecto consume más de lo que avanza.`
+                : `El gasto rinde: $ ${n1(Number(ev.cpi))} de valor por peso gastado.`}
+              {ev.spi != null && Number(ev.spi) < 1 ? ` Y va al ${n0(Number(ev.spi) * 100)} % del ritmo planeado.` : ""}
+            </p>
+          )}
+          <Entregables projectCode={p.code} entregables={entregables} usuarios={usuarios} />
+        </section>
 
         <section className="plancha">
           <h2>Contratación de terceros <span className="mid">{n0(contratos.length)} CONTRATOS</span></h2>

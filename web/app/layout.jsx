@@ -2,7 +2,7 @@ import "./globals.css";
 import { q } from "../lib/db";
 import { trmHoy } from "../lib/trm";
 import { fechaHora, hoy, n1 } from "../lib/fmt";
-import Nav from "./nav";
+import Shell from "./shell";
 
 export const metadata = {
   title: "Cota",
@@ -33,12 +33,18 @@ async function contexto() {
 export default async function RootLayout({ children }) {
   const [ctx, trm] = await Promise.all([contexto(), trmHoy()]);
   const counts = {
-    "/mi-dia": null,
     "/proyectos": ctx.proyectos,
     "/cartera": ctx.cartera,
     "/contratacion": ctx.contratacion,
     "/infraestructura": ctx.infraestructura,
   };
+  const pie = [
+    hoy(),
+    `CORTE ${ctx.corte ? fechaHora(ctx.corte).toUpperCase() : "LEDGER EN VIVO"}`,
+    "VISTA v2 · TRANSACCIONAL",
+  ];
+  const instrumento = hoy() + (trm ? ` · TRM ${n1(trm)}` : "");
+
   return (
     <html lang="es-CO" data-theme="light">
       <head>
@@ -50,39 +56,9 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div className="lienzo">
-          <aside className="rail">
-            <div className="wordmark">
-              <div className="cota">COTA</div>
-              <div className="grad" aria-hidden="true" />
-              <div className="emisor">INNOVAHUB · GESTIÓN DE PROYECTOS</div>
-            </div>
-            <Nav counts={counts} />
-            <div className="pie">
-              {hoy()}
-              <br />
-              CORTE {ctx.corte ? fechaHora(ctx.corte).toUpperCase() : "SIN SYNC"}
-              <br />
-              VISTA v0 · F1 · SOLO LECTURA
-            </div>
-          </aside>
-          <main>
-            <div className="topglobal">
-              <form action="/proyectos" method="get">
-                <input
-                  name="q"
-                  placeholder="Buscar proyecto, cliente, gestora o país"
-                  aria-label="Buscar"
-                />
-              </form>
-              <div className="instrumento">
-                {hoy()}
-                {trm ? ` · TRM ${n1(trm)}` : ""}
-              </div>
-            </div>
-            {children}
-          </main>
-        </div>
+        <Shell counts={counts} pie={pie} instrumento={instrumento}>
+          {children}
+        </Shell>
       </body>
     </html>
   );

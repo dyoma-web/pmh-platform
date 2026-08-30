@@ -12,6 +12,7 @@ const ITEMS = [
   { href: "/infraestructura", num: "06", label: "Infraestructura" },
   { href: "/finanzas", num: "07", label: "Finanzas" },
   { href: "/calidad", num: "08", label: "Calidad de datos" },
+  { href: "/capacidad", num: "09", label: "Capacidad" },
 ];
 
 export default function Nav({ counts = {} }) {

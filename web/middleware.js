@@ -4,6 +4,12 @@ import { NextResponse } from "next/server";
 // BASIC_AUTH_PASS existen en el entorno (en local sin variables no estorba).
 // En F2 la reemplaza OIDC contra Google Workspace — esto nunca es el plan final.
 export function middleware(req) {
+  const { pathname } = req.nextUrl;
+  // Los portales externos se autentican por token de registro, no por Basic Auth
+  if (pathname.startsWith("/portal/") || pathname.startsWith("/cliente/") ||
+      pathname.startsWith("/api/portal")) {
+    return NextResponse.next();
+  }
   const user = process.env.BASIC_AUTH_USER;
   const pass = process.env.BASIC_AUTH_PASS;
   if (!user || !pass) return NextResponse.next();

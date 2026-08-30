@@ -3,6 +3,7 @@ import { n0, cop } from "../../../lib/fmt";
 import Historia from "../../historia";
 import SelectorActor from "../firmas/selector-actor";
 import PanelContacto from "./panel-contacto";
+import BotonPortal from "./boton-portal";
 
 export const dynamic = "force-dynamic";
 
@@ -69,7 +70,7 @@ export default async function Contratistas({ searchParams }) {
                         {f.autorizacion ? "registrada" : "pendiente"}
                       </span>
                     </td>
-                    <td><PanelContacto contratistaId={f.id} actorId={actorId} /></td>
+                    <td style={{display:"flex",gap:8,alignItems:"center"}}><PanelContacto contratistaId={f.id} actorId={actorId} /><BotonPortal contratistaId={f.id} /></td>
                   </tr>
                 ))}
               </tbody>
