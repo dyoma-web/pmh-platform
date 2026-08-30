@@ -113,32 +113,37 @@ export default async function Comparador({ searchParams }) {
           {unidades.map(([unidad, fs]) => {
             const max = Math.max(...fs.map((f) => Number(f.precio_prom)));
             const prom = fs.reduce((s, f) => s + Number(f.precio_prom), 0) / fs.length;
+            const etiqueta = unidad === "sin unidad" ? "UNIDAD SIN ESPECIFICAR" : `POR ${unidad.toUpperCase()}`;
             return (
-              <div key={unidad} style={{ marginBottom: 18 }}>
-                {multiUnidad && (
-                  <div className="notaf" style={{ margin: "6px 0" }}>
-                    POR {unidad.toUpperCase()} · {n0(fs.length)} CONTRATISTA{fs.length > 1 ? "S" : ""} ·
-                    PROMEDIO {cop(Math.round(prom))}
-                  </div>
-                )}
-                <div style={{ position: "relative" }}>
-                  {fs.length > 1 && (
-                    <div title={`promedio ${cop(Math.round(prom))}`} style={{
-                      position: "absolute", top: 0, bottom: 0,
-                      left: `calc(180px + (100% - 320px) * ${prom / max})`,
-                      borderLeft: "2px dashed var(--tinta-3)", zIndex: 1 }} />
-                  )}
-                  {fs.map((f) => (
-                    <div className="bar" key={f.contractor_id} style={{ position: "relative" }}>
-                      <span className="lab" style={{ width: 172 }}>
+              <div key={unidad} style={{ marginBottom: 20 }}>
+                <div className="notaf" style={{ margin: "6px 0 8px" }}>
+                  {etiqueta} · {n0(fs.length)} CONTRATISTA{fs.length > 1 ? "S" : ""}
+                  {fs.length > 1 ? <> · PROMEDIO {cop(Math.round(prom))} (línea punteada)</> : null}
+                </div>
+                {fs.map((f) => {
+                  const pct = max > 0 ? (Number(f.precio_prom) / max) * 100 : 0;
+                  return (
+                    <div key={f.contractor_id} style={{
+                      display: "flex", alignItems: "center", gap: 12,
+                      margin: "5px 0", fontVariantNumeric: "tabular-nums" }}>
+                      <span style={{ flex: "0 0 170px", overflow: "hidden",
+                        textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: 13 }}>
                         <Link href={`/contratacion/contratistas/${f.contractor_id}`}>{f.display_name}</Link>
                       </span>
-                      <div className="trk">
-                        <div className="fil" style={{
-                          width: `${(Number(f.precio_prom) / max) * 100}%`,
-                          background: "var(--tinta-3)" }} />
-                      </div>
-                      <span className="val" style={{ width: 140 }}>
+                      <span style={{ flex: "1 1 auto", position: "relative", height: 14,
+                        background: "var(--surco)", borderRadius: 3, minWidth: 120 }}>
+                        <span style={{ position: "absolute", inset: "0 auto 0 0",
+                          width: `${Math.max(pct, 1.5)}%`, background: "var(--tinta-3)",
+                          borderRadius: 3 }} />
+                        {fs.length > 1 && (
+                          <span title={`promedio ${cop(Math.round(prom))}`} style={{
+                            position: "absolute", top: -3, bottom: -3,
+                            left: `${(prom / max) * 100}%`,
+                            borderLeft: "2px dashed var(--tinta-1)" }} />
+                        )}
+                      </span>
+                      <span style={{ flex: "0 0 165px", textAlign: "right",
+                        fontFamily: "var(--fx-mono)", fontSize: 12.5, whiteSpace: "nowrap" }}>
                         {cop(f.precio_prom)}
                         {f.eval_promedio != null && (
                           <span className={"sev " + (Number(f.eval_promedio) >= 4 ? "correcto" : "alerta")}
@@ -146,8 +151,8 @@ export default async function Comparador({ searchParams }) {
                         )}
                       </span>
                     </div>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             );
           })}
