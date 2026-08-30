@@ -17,7 +17,7 @@ async function contexto() {
       select
         (select max(finished_at) from staging._sync_run) corte,
         (select count(*) from metrics.v0_semaforos) tareas,
-        (select count(*) from metrics.v0_portafolio where semaforo='critico') proyectos,
+        (select count(*) from metrics.v2_portafolio where semaforo='critico') proyectos,
         (select count(*) from metrics.v0_cartera_aging) cartera,
         (select count(*) from staging.contract_payments
           where adm_validation<>'Paid' and (contractor_invoice is null or contractor_legal is null)) contratacion,

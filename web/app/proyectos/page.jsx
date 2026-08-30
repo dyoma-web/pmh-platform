@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { q } from "../../lib/db";
 import { cop, mcop, n0, n1, fecha } from "../../lib/fmt";
+import { slug } from "../../lib/slug";
 import Historia from "../historia";
 
 export const dynamic = "force-dynamic";
 
-const ESTADOS = ["Todos", "Active", "Completed", "Paused", "Cancelled"];
-const ES = { Active: "Activo", Completed: "Completado", Paused: "Pausado", Cancelled: "Cancelado" };
+const ESTADOS = ["Todos", "active", "completed", "paused", "cancelled", "draft"];
+const ES = { active: "Activo", completed: "Completado", paused: "Pausado",
+  cancelled: "Cancelado", draft: "Borrador" };
 
 export default async function Proyectos({ searchParams }) {
   const sp = await searchParams;
@@ -14,7 +16,7 @@ export default async function Proyectos({ searchParams }) {
   const buscar = (sp?.q || "").trim();
 
   const filas = await q(
-    `select * from metrics.v0_portafolio
+    `select * from metrics.v2_portafolio
      where ($1::text is null or estado = $1)
        and ($2 = '' or project_code ilike '%'||$2||'%' or cliente ilike '%'||$2||'%'
             or gestora ilike '%'||$2||'%' or pais ilike '%'||$2||'%')
@@ -23,7 +25,6 @@ export default async function Proyectos({ searchParams }) {
     [estado, buscar]
   );
   const totCosteo = filas.reduce((s, f) => s + Number(f.costeo_cop || 0), 0);
-
   const criticos = filas.filter((f) => f.semaforo === "critico").length;
   const regularizar = filas.filter((f) => f.semaforo === "alerta").length;
   const titulo = buscar
@@ -32,13 +33,13 @@ export default async function Proyectos({ searchParams }) {
       ? `${n0(criticos)} proyectos piden atención antes que los demás`
       : `${n0(filas.length)} proyectos, ninguno en rojo`;
   const lede = buscar
-    ? `Filtrando ${estado ? ES[estado].toLowerCase() + "s" : "todo el portafolio"} por «${buscar}». El orden sigue siendo por semáforo: lo urgente arriba.`
-    : `Los de arriba tienen facturas vencidas por cobrar; les siguen ${n0(regularizar)} con fecha de cierre cumplida que exigen prórroga o cierre. Los demás pueden esperar a mañana. Costeo visible: ${mcop(totCosteo)} M COP.`;
+    ? `Filtrando ${estado ? (ES[estado] ?? estado).toLowerCase() + "s" : "todo el portafolio"} por «${buscar}». El orden sigue siendo por semáforo: lo urgente arriba.`
+    : `Los de arriba tienen saldos vencidos por cobrar; les siguen ${n0(regularizar)} con fecha de cierre cumplida que exigen prórroga o cierre. Fuente: núcleo transaccional (los saldos descuentan abonos parciales). Costeo visible: ${mcop(totCosteo)} M COP.`;
 
   return (
     <>
       <Historia num="02" seccion="Proyectos · Portafolio" titulo={titulo} lede={lede}
-        lado={<span className="notaf">{n0(filas.length)} FILAS · ORDEN POR SEMÁFORO</span>} />
+        lado={<span className="notaf">{n0(filas.length)} FILAS · FUENTE TRANSACCIONAL</span>} />
 
       <div className="contenido">
         <section className="plancha">
@@ -53,7 +54,7 @@ export default async function Proyectos({ searchParams }) {
               }}
             />
             <select
-              name="estado" defaultValue={sp?.estado ?? "Active"}
+              name="estado" defaultValue={sp?.estado ?? "active"}
               style={{
                 height: 40, border: "1px solid var(--filete)", borderRadius: 8,
                 padding: "0 10px", fontFamily: "var(--fx-archivo)", fontSize: 13,
@@ -87,13 +88,20 @@ export default async function Proyectos({ searchParams }) {
                   <tr key={f.project_code}>
                     <td className={"estado code " + f.semaforo}>
                       <Link href={`/proyectos/${encodeURIComponent(f.project_code)}`}>
-                        {f.project_code}
+                        {f.display_code}
                       </Link>
                     </td>
-                    <td>{f.cliente}</td>
-                    <td>{f.pais}</td>
-                    <td className="code">{f.linea}</td>
-                    <td>{f.gestora}</td>
+                    <td>{f.cliente ?? "—"}</td>
+                    <td>
+                      {f.pais && (
+                        <img src={`/img/banderas/${slug(f.pais)}.png`} alt=""
+                          width={18} height={13}
+                          style={{ verticalAlign: "-1px", marginRight: 6, borderRadius: 2 }} />
+                      )}
+                      {f.pais ?? "—"}
+                    </td>
+                    <td className="code">{f.linea ?? "—"}</td>
+                    <td>{f.gestora ?? "—"}</td>
                     <td>
                       <span className={"sev " + f.semaforo}>
                         {f.vencidos_n > 0
@@ -119,7 +127,7 @@ export default async function Proyectos({ searchParams }) {
           {filas.length === 0 && (
             <div className="vacio">
               <div className="t">Ningún proyecto coincide con este filtro.</div>
-              <div className="d">Hay 144 proyectos en el maestro. Quita el texto o cambia el estado.</div>
+              <div className="d">Quita el texto o cambia el estado.</div>
             </div>
           )}
         </section>
