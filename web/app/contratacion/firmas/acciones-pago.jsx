@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Sube al almacén propio (/api/archivos: dedup por hash, URL firmada) o acepta un enlace.
-function Subidor({ etiqueta, valor, onUrl, origen }) {
+export function Subidor({ etiqueta, valor, onUrl, origen }) {
   const [subiendo, setSubiendo] = useState(false);
   async function archivo(e) {
     const f = e.target.files?.[0];
