@@ -13,7 +13,7 @@ export default function Shell({ counts, pie, instrumento, children }) {
     <div className="lienzo">
       <aside className="rail">
         <div className="wordmark">
-          <div className="cota">COTA</div>
+          <div className="cota">KOLETO</div>
           <div className="grad" aria-hidden="true" />
           <div className="emisor">INNOVAHUB · GESTIÓN DE PROYECTOS</div>
         </div>

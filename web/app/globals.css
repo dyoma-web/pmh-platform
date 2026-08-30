@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   COTA · Sistema de diseño v0 — implementación del Manual de marca 2.0
+   KOLETO · Sistema de diseño v0 — implementación del Manual de marca 2.0
    Territorio: instrumento de precisión × cartografía operativa.
    Reglas duras: el espectro de identidad nunca toca un dato ni un semáforo;
    la escala semántica pertenece a los datos; relieve solo en superficies de
@@ -28,7 +28,7 @@
   --info: #2c7be5;
   --pendiente: #5b6884;
 
-  /* Espectro Cota — SOLO identidad (wordmark, cabeceras, acción primaria) */
+  /* Espectro Koleto — SOLO identidad (wordmark, cabeceras, acción primaria) */
   --espectro: linear-gradient(96deg, #7a3be8 0%, #4f45e4 26%, #2c7be5 52%, #35c1e8 74%, #ff8a5b 100%);
 
   /* Relieve: privilegio de superficies con decisión */

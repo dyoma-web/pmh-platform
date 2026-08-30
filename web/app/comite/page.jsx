@@ -38,7 +38,7 @@ export default async function Comite() {
       <header style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end",
         borderBottom: "2px solid var(--tinta-1)", paddingBottom: 12 }}>
         <div>
-          <div style={{ fontWeight: 600, fontSize: 17, letterSpacing: ".13em" }}>COTA</div>
+          <div style={{ fontWeight: 600, fontSize: 17, letterSpacing: ".13em" }}>KOLETO</div>
           <div style={{ height: 2, width: 56, background: "var(--espectro)", margin: "4px 0" }} />
           <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: "-.02em", margin: "8px 0 0" }}>
             Comité de dirección
@@ -116,7 +116,7 @@ export default async function Comite() {
 
       <footer className="notaf" style={{ borderTop: "1px solid var(--filete)", marginTop: 20,
         paddingTop: 10, display: "flex", justifyContent: "space-between" }}>
-        <span>INNOVAHUB · DOCUMENTO INTERNO · GENERADO AUTOMÁTICAMENTE POR COTA</span>
+        <span>INNOVAHUB · DOCUMENTO INTERNO · GENERADO AUTOMÁTICAMENTE POR KOLETO</span>
         <span>1 / 1</span>
       </footer>
     </div>

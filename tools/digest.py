@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-F1 · Digest diario de Cota — el correo de las 7:00 con la misma voz narrativa
+F1 · Digest diario de Koleto — el correo de las 7:00 con la misma voz narrativa
 de la plataforma: tesis, evidencia y verbo. Máximo un correo al día por persona.
 
 Genera texto y HTML desde las vistas metrics.v0_*. Envío:
@@ -75,7 +75,7 @@ def main():
                  f"concentran {mcop(total)} M COP.")
 
     hoy = date.today()
-    asunto = f"Cota · {hoy.day} {MES[hoy.month - 1]} — " + (
+    asunto = f"Koleto · {hoy.day} {MES[hoy.month - 1]} — " + (
         tesis.split(":")[0] if n else "todo al día")
 
     # ── texto plano ──────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ def main():
     lineas += ["", f"Contexto: cartera vencida {mcop(k['cartera_vencida_cop'])} M de "
                f"{mcop(k['cartera_pendiente_cop'])} M · {k['pagos_terceros_pend_n']} pagos a terceros "
                f"pendientes · {k['pagos_sin_soporte_n']} sin soporte legal.",
-               "", "Cota · InnovaHub — generado automáticamente. Un correo al día, nada más."]
+               "", "Koleto · InnovaHub — generado automáticamente. Un correo al día, nada más."]
     texto = "\n".join(lineas)
 
     # ── HTML (estilos en línea, sobrio, imprimible) ──────────────────────────
@@ -114,7 +114,7 @@ def main():
         for p in prox)
     html = f"""<div style="background:#edf1f9;padding:24px">
   <div style="max-width:640px;margin:0 auto;background:#fff;border-radius:16px;padding:28px 32px">
-    <div style="font:600 15px Archivo,Helvetica,sans-serif;letter-spacing:.13em;color:#101b3d">COTA</div>
+    <div style="font:600 15px Archivo,Helvetica,sans-serif;letter-spacing:.13em;color:#101b3d">KOLETO</div>
     <div style="height:2px;width:64px;margin:6px 0 4px;background:linear-gradient(96deg,#7a3be8,#4f45e4 26%,#2c7be5 52%,#35c1e8 74%,#ff8a5b)"></div>
     <div style="font:10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#5b6884">
       DIGEST · {hoy.day} {MES[hoy.month-1].upper()} {hoy.year} · 07:00</div>

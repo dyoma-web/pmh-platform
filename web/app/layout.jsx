@@ -5,7 +5,7 @@ import { fechaHora, hoy, n1 } from "../lib/fmt";
 import Shell from "./shell";
 
 export const metadata = {
-  title: "Cota",
+  title: "Koleto",
   description: "Sala de máquinas de InnovaHub — gestión administrativa y financiera de proyectos.",
 };
 

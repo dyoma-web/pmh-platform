@@ -87,7 +87,7 @@ export default async function PortalCliente({ params }) {
         </div>
       </section>
       <p className="notaf" style={{ margin: "20px 0" }}>
-        INNOVAHUB · DOCUMENTO INFORMATIVO · GENERADO AUTOMÁTICAMENTE POR COTA
+        INNOVAHUB · DOCUMENTO INFORMATIVO · GENERADO AUTOMÁTICAMENTE POR KOLETO
       </p>
     </div>
   );
@@ -97,7 +97,7 @@ function CabeceraCliente() {
   return (
     <div style={{ paddingTop: 28 }}>
       <div className="wordmark" style={{ padding: 0 }}>
-        <div className="cota">COTA</div>
+        <div className="cota">KOLETO</div>
         <div className="grad" aria-hidden="true" />
         <div className="emisor">INNOVAHUB · SEGUIMIENTO DE PROYECTO</div>
       </div>

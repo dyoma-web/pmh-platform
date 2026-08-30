@@ -1,4 +1,4 @@
-// Reglas de formato del manual Cota §16:
+// Reglas de formato del manual Koleto §16:
 // 27 ago 2026 · $ 4.185.598 COP · miles con punto, decimales con coma · nunca «COP$».
 const nf0 = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 });
 const nf1 = new Intl.NumberFormat("es-CO", { minimumFractionDigits: 1, maximumFractionDigits: 1 });

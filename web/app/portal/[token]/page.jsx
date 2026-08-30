@@ -71,7 +71,7 @@ export default async function Portal({ params }) {
         })}
       </section>
       <p className="notaf" style={{ margin: "20px 0" }}>
-        INNOVAHUB · COTA · ESTE ENLACE ES PERSONAL — NO LO COMPARTAS
+        INNOVAHUB · KOLETO · ESTE ENLACE ES PERSONAL — NO LO COMPARTAS
       </p>
     </div>
   );
@@ -81,7 +81,7 @@ function Cabecera() {
   return (
     <div style={{ paddingTop: 28 }}>
       <div className="wordmark" style={{ padding: 0 }}>
-        <div className="cota">COTA</div>
+        <div className="cota">KOLETO</div>
         <div className="grad" aria-hidden="true" />
         <div className="emisor">INNOVAHUB · PORTAL DE CONTRATISTAS</div>
       </div>
